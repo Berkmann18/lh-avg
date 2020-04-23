@@ -1,0 +1,32 @@
+language: node_js
+os: linux
+node_js:
+  - 'stable'
+  - 'lts/*'
+before_script:
+  - npm run lint
+install:
+  - npm ci
+  - snyk auth $SNYK_TOKEN
+  - npm i -g codecov
+script:
+  - npm t
+  - codecov
+after_success:
+  - snyk monitor
+
+jobs:
+  include:
+    - stage: release
+      node_js: 'stable'
+      script: skip
+      deploy:
+        provider: script
+        script: npm run semantic-release
+branches:
+  except:
+    - /^v\d+\.\d+\.\d+$/
+stages:
+  - name: test
+  - name: release
+    if: branch = master
