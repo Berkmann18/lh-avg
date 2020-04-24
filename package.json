@@ -151,7 +151,8 @@
   "eslintIgnore": [
     "coverage/**",
     "*.min.js",
-    "dist"
+    "dist",
+    "build"
   ],
   "eslintConfig": {
     "env": {
