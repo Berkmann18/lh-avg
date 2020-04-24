@@ -89,3 +89,10 @@ typings/
 *.njsproj
 *.sln
 *.sw*
+
+# Generation
+dist
+out
+build
+
+yarn.lock
