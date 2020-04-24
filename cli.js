@@ -24,38 +24,38 @@ program
     });
 
     switch (program.format) {
-    case 'json':
-      console.dir(program.split ? Object.values(results) : results);
-      break;
-    case 'csv':
-      if (program.split) {
-        console.log('perf,a11y,bp,seo,pwa,average');
-        for (const str in results) {
-          const out = Object.values(results[str]);
-          out[4] = `${Object.values(out[4]).join('/')}`;
-          console.log(out.join(','));
+      case 'json':
+        console.dir(program.split ? Object.values(results) : results);
+        break;
+      case 'csv':
+        if (program.split) {
+          console.log('perf,a11y,bp,seo,pwa,average');
+          for (const str in results) {
+            const out = Object.values(results[str]);
+            out[4] = `${Object.values(out[4]).join('/')}`;
+            console.log(out.join(','));
+          }
+        } else {
+          console.log('input,average');
+          for (const str in results) {
+            console.log(`"${str}",${results[str].average}`);
+          }
         }
-      } else {
-        console.log('input,average');
-        for (const str in results) {
-          console.log(`"${str}",${results[str].average}`);
+        break;
+      default:
+        if (program.split) {
+          console.log('Perf / A11y / BP / SEO / PWA: Average');
+          for (const str in results) {
+            const out = Object.values(results[str]);
+            out[4] = `(${Object.values(out[4]).join(', ')})`;
+            console.log(out.join(' / ').replace(') /', '):'));
+          }
+        } else {
+          console.log('Input: Average');
+          for (const str in results) {
+            console.log(`"${str}": ${results[str].average}`);
+          }
         }
-      }
-      break;
-    default:
-      if (program.split) {
-        console.log('Perf / A11y / BP / SEO / PWA: Average');
-        for (const str in results) {
-          const out = Object.values(results[str]);
-          out[4] = `(${Object.values(out[4]).join(', ')})`;
-          console.log(out.join(' / ').replace(') /', '):'));
-        }
-      } else {
-        console.log('Input: Average');
-        for (const str in results) {
-          console.log(`"${str}": ${results[str].average}`);
-        }
-      }
     }
   })
   .parse(process.argv);
