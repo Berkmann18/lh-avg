@@ -15,25 +15,28 @@ describe('baseline', () => {
   });
 });
 
+const result = 0.423673469387755;
+
 describe('normal', () => {
-  test('valid (old)', () => {
-    expect(avg('13 / 94 / 86 / 75 / (0/3, 0/3, 2/7)')).toStrictEqual(0.423673469387755);
+  test('longhand', () => {
+    expect(avg('13 / 94 / 86 / 75 / (0/3, 0/3, 2/7)')).toStrictEqual(result);
+  });
+  test('shorthand', () => {
+    expect(avg('13 / 94 / 86 / 75 / (0, 0, 2)')).toStrictEqual(result);
   });
 });
 
-// TODO Make the result consistent
-// TODO add tests for an option to return a percentage string
 describe('Compressed', () => {
-  test('valid (old)', () => {
-    expect(avg('13/94/86/75/(0/3, 0/3, 2/7)')).toStrictEqual(0.423673469387755);
+  test('valid (longhand)', () => {
+    expect(avg('13/94/86/75/(0/3, 0/3, 2/7)')).toStrictEqual(result);
   });
 
-  test('invalid (old)', () => {
-    expect(avg('13/94/86/75/(0/3,0/3,2/7)')).toStrictEqual(0.423673469387755);
+  test('invalid (longhand)', () => {
+    expect(avg('13/94/86/75/(0/3,0/3,2/7)')).toStrictEqual(result);
   });
 
-  test('mixed (old)', () => {
-    expect(avg('94/13/75/86/(0/3, 2/7, 0/3)')).toStrictEqual(0.423673469387755);
+  test('mixed (longhand)', () => {
+    expect(avg('94/13/75/86/(0/3, 2/7, 0/3)')).toStrictEqual(result);
   });
 
   // test('short', () => {
