@@ -10,7 +10,7 @@
   "scripts": {
     "lint": "eslint . && npm run lint:lockfile",
     "lint:fix": "eslint . --fix",
-    "format": "prettier --config .prettierrc.js --write '**/*.js'",
+    "format": "prettier --config .prettierrc.js --write 'src/*.ts'",
     "test": "jest",
     "sec": "snyk test",
     "test:watch": "jest --watch",
@@ -18,8 +18,8 @@
     "semantic-release": "semantic-release",
     "lint:lockfile": "lockfile-lint --path package-lock.json --type npm --validate-https --allowed-hosts npm yarn",
     "lint:md": "remark . .github",
-    "doc:lint": "documentation lint index.js",
-    "doc:html": "documentation build *.js -f html -o doc/ -a public",
+    "doc:lint": "documentation lint src/*.ts",
+    "doc:html": "documentation build src/*.ts -f html -o doc/ -a public",
     "doc": "npm run doc:lint && npm run doc:html",
     "prepare": "snyk protect",
     "build": "npm run build:main && npm run build:module",
@@ -122,7 +122,7 @@
     }
   },
   "lint-staged": {
-    "**/*.js": [
+    "**/*.(j|t)s": [
       "npm run format"
     ],
     "*.md": [
