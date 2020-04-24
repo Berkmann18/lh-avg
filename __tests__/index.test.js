@@ -3,11 +3,11 @@ const avg = require('../src/index.ts').default;
 
 describe('baseline', () => {
   test('empty', () => {
-    expect(avg('')).toBe(NaN);
+    expect(() => avg('')).toThrow('Invalid expression!');
   });
 
   test('0*4', () => {
-    expect(avg('0/0/0/0')).toBe(0);
+    expect(() => avg('0/0/0/0')).toThrow('Invalid expression!');
   });
 
   test('full 0', () => {
@@ -15,8 +15,10 @@ describe('baseline', () => {
   });
 });
 
-test('valid (old)', () => {
-  expect(avg('13 / 94 / 86 / 75 / (0/3, 0/3, 2/7)')).toStrictEqual(0.423673469387755);
+describe('normal', () => {
+  test('valid (old)', () => {
+    expect(avg('13 / 94 / 86 / 75 / (0/3, 0/3, 2/7)')).toStrictEqual(0.423673469387755);
+  });
 });
 
 // TODO Make the result consistent
@@ -27,7 +29,7 @@ describe('Compressed', () => {
   });
 
   test('invalid (old)', () => {
-    expect(avg('13/94/86/75/(0/3,0/3,2/7)')).toStrictEqual(NaN);
+    expect(avg('13/94/86/75/(0/3,0/3,2/7)')).toStrictEqual(0.423673469387755);
   });
 
   test('mixed (old)', () => {
@@ -39,6 +41,6 @@ describe('Compressed', () => {
   // });
 
   test('no-pwa', () => {
-    expect(avg('13/94/86/75')).toStrictEqual(67);
+    expect(() => avg('13/94/86/75')).toThrow('Invalid expression!');
   });
 });
