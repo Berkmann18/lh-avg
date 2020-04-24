@@ -13,9 +13,11 @@ program
   .version(pkg.version)
   .description(pkg.description)
   .option('-p, --percentage', 'Return the result(s) in percentage form')
-  .option('-f, --format <format>', 'Return the result(s) in a specific format (json, csv, md), default: text')
+  .option(
+    '-f, --format <format>',
+    'Return the result(s) in a specific format (json, csv, md, html), default: text'
+  )
   .option('-s, --split', 'Split the string by metric')
-  // TODO Add HTML exports
   .action(scoreStrings => {
     const results = [];
     /* eslint-disable security/detect-object-injection */
@@ -45,7 +47,9 @@ program
         break;
       case 'md':
         if (program.split) {
-          console.log('| Perf | A11y | BP | SEO | PWA | Average |\n|------|------|----|-----|-----|---------|');
+          console.log(
+            '| Perf | A11y | BP | SEO | PWA | Average |\n|------|------|----|-----|-----|---------|'
+          );
           for (const str in results) {
             const out = Object.values(results[str]);
             out[4] = `(${Object.values(out[4]).join(', ')})`;
@@ -55,6 +59,22 @@ program
           console.log('| Input | Average |\n|-------|---------|');
           for (const str in results) {
             console.log(`| ${str} | ${results[str].average} |`);
+          }
+        }
+        break;
+      case 'html':
+        if (program.split) {
+          console.log('<table>\n  <tr>\n    <th>Perf</th><th>A11y</th><th>BP</th><th>SEO</th><th>PWA</th><th>Average</th>\n  </tr>');
+          for (const str in results) {
+            const out = Object.values(results[str]);
+            out[4] = `(${Object.values(out[4]).join(', ')})`;
+            console.log(`  <tr>\n    <td>${out.join('</td><td>')}</td>\n  </tr>`);
+          }
+          console.log('</table>');
+        } else {
+          console.log('<table>\n  <tr>\n    <th>Input</th><th>Average</th>\n  </tr>');
+          for (const str in results) {
+            console.log(`  <tr>\n    <td>${str}</td><td>${results[str].average}</td>\n  </tr>`);
           }
         }
         break;
