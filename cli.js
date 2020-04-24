@@ -24,6 +24,7 @@ program
     });
 
     switch (program.format) {
+    /* eslint-disable indent */
       case 'json':
         console.dir(program.split ? Object.values(results) : results);
         break;
