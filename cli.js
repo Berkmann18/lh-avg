@@ -13,9 +13,9 @@ program
   .version(pkg.version)
   .description(pkg.description)
   .option('-p, --percentage', 'Return the result(s) in percentage form')
-  .option('-f, --format <format>', 'Return the result(s) in a specific format')
+  .option('-f, --format <format>', 'Return the result(s) in a specific format (json, csv, md), default: text')
   .option('-s, --split', 'Split the string by metric')
-  // TODO Add MD/HTML exports
+  // TODO Add HTML exports
   .action(scoreStrings => {
     const results = [];
     /* eslint-disable security/detect-object-injection */
@@ -40,6 +40,21 @@ program
           console.log('input,average');
           for (const str in results) {
             console.log(`"${str}",${results[str].average}`);
+          }
+        }
+        break;
+      case 'md':
+        if (program.split) {
+          console.log('| Perf | A11y | BP | SEO | PWA | Average |\n|------|------|----|-----|-----|---------|');
+          for (const str in results) {
+            const out = Object.values(results[str]);
+            out[4] = `(${Object.values(out[4]).join(', ')})`;
+            console.log('|', out.join(' | '), '|');
+          }
+        } else {
+          console.log('| Input | Average |\n|-------|---------|');
+          for (const str in results) {
+            console.log(`| ${str} | ${results[str].average} |`);
           }
         }
         break;
