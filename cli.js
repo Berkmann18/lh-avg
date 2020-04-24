@@ -64,7 +64,9 @@ program
         break;
       case 'html':
         if (program.split) {
-          console.log('<table>\n  <tr>\n    <th>Perf</th><th>A11y</th><th>BP</th><th>SEO</th><th>PWA</th><th>Average</th>\n  </tr>');
+          console.log(
+            '<table>\n  <tr>\n    <th>Perf</th><th>A11y</th><th>BP</th><th>SEO</th><th>PWA</th><th>Average</th>\n  </tr>'
+          );
           for (const str in results) {
             const out = Object.values(results[str]);
             out[4] = `(${Object.values(out[4]).join(', ')})`;
