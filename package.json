@@ -12,10 +12,16 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --config .prettierrc.js --write '**/*.js'",
     "test": "jest",
+    "sec": "snyk test",
     "test:watch": "jest --watch",
     "coverage:view": "open-cli coverage/lcov-report/index.html",
     "semantic-release": "semantic-release",
-    "lint:lockfile": "lockfile-lint --path package-lock.json --type <%= npmClient %> --validate-https --allowed-hosts npm yarn"
+    "lint:lockfile": "lockfile-lint --path package-lock.json --type <%= npmClient %> --validate-https --allowed-hosts npm yarn",
+    "lint:md": "remark . .github",
+    "doc:lint": "documentation lint index.js",
+    "doc:html": "documentation build *.js -f html -o doc/ -a public",
+    "doc": "npm run doc:lint && npm run doc:html",
+    "prepare": "snyk protect"
   },
   "author": {
     "name": "Maximilian Berkmann",
@@ -49,6 +55,7 @@
     "babel-plugin-transform-regenerator": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "cz-conventional-changelog": "^1.2.0",
+    "documentation": "^12.3.0",
     "eslint": "^6.0.1",
     "eslint-config-standard": "^13.0.1",
     "eslint-plugin-import": "^2.18.0",
@@ -66,7 +73,8 @@
     "remark-cli": "^8.0.0",
     "remark-preset-lint-consistent": "^3.0.0",
     "remark-preset-lint-recommended": "^4.0.0",
-    "semantic-release": "^15.13.19"
+    "semantic-release": "^15.13.19",
+    "snyk": "^1.310.0"
   },
   "jest": {
     "testEnvironment": "node",

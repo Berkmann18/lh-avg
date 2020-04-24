@@ -14,10 +14,9 @@
 
 ## Related Issue
 
-<!--- This project only accepts pull requests related to open issues -->
-<!--- If suggesting a new feature or change, please discuss it in an issue first -->
+<!--- If suggesting a new feature or change, please discuss it in an issue first (if possible) -->
 <!--- If fixing a bug, there should be an issue describing it with steps to reproduce -->
-<!--- Please link to the issue here: -->
+<!--- Please link to the issue here (e.g. Fixes #1, Closes #2): -->
 
 ## Motivation and Context
 

@@ -1,6 +1,7 @@
 ---
 name: "\U0001F680 Feature request"
 about: Suggest an idea for this project
+labels: 'Type: Enhancement :bulb:, Priority: Low'
 ---
 
 <!--
@@ -13,7 +14,7 @@ Please fill in as much of the template below as you're able.
 Please describe the problem you are trying to solve.
 
 **Describe the solution you'd like**
-Please describe the desired behavior.
+Please describe the desired behaviour.
 
 **Describe alternatives you've considered**
 Please describe alternative solutions or features you have considered.

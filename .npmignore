@@ -1,0 +1,10 @@
+src
+test
+.travis.yml
+.github
+.prettierignore
+.vscode
+**/*.spec.*
+coverage
+.nyc_output
+*.log
