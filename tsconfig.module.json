@@ -5,7 +5,7 @@
     "outDir": "build/module",
     "module": "esnext"
   },
-  "exclude": [
-    "node_modules/**"
-  ]
+  "removeComments": true,
+  "exclude": ["node_modules/**"],
+  "compileOnSave": true
 }
