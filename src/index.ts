@@ -2,41 +2,91 @@ import split from './split';
 
 const mean = (nums: number[]): number => nums.reduce((acc, val) => acc + val, 0) / nums.length;
 
+const perc = (num: number): string => `${Math.round(num * 10000) / 100}%`;
+
 const safeFractionEval = (fraction: string): number => {
   // return fraction.split('/').map(parseFloat).reduce((acc, val) => acc / val);
   const [num, denum] = fraction.split('/');
   return parseInt(num) / parseInt(denum);
 };
 
-const avg = (scoreStr: string, asPercentage = false): number | string => {
-  const { output, shorthandForm } = split(scoreStr);
-  let scores: number[];
+type NumLike = number | string;
 
-  const { perf, a11y, bp, seo, fnr, ins, po } = output;
+interface Result {
+  perf: NumLike; // Performance
+  a11y: NumLike; // Accessibility
+  bp: NumLike; // Best Practices
+  seo: NumLike; // Search Engine Optimization
+  pwa: {
+    fnr: NumLike; // Fast & Reliable
+    ins: NumLike; // Installable
+    po: NumLike; // PWA Optimized
+  };
+  result: NumLike;
+  // [key: NumLike]: NumLike;
+}
+
+const avg = (scoreStr: string, asPercentage = false): Result => {
+  const { output, shorthandForm } = split(scoreStr);
+
+  const perf = parseFloat(output.perf) / 100;
+  const a11y = parseFloat(output.a11y) / 100;
+  const bp = parseFloat(output.bp) / 100;
+  const seo = parseFloat(output.seo) / 100;
+  let fnr = null;
+  let ins = null;
+  let po = null;
+
   if (shorthandForm) {
-    scores = [
-      parseFloat(perf) / 100,
-      parseFloat(a11y) / 100,
-      parseFloat(bp) / 100,
-      parseFloat(seo) / 100,
-      parseFloat(fnr) / 3,
-      parseFloat(ins) / 3,
-      parseFloat(po) / 7
-    ];
+    fnr = parseFloat(output.fnr) / 3;
+    ins = parseFloat(output.ins) / 3;
+    po = parseFloat(output.po) / 7;
   } else {
-    scores = [
-      parseFloat(perf) / 100,
-      parseFloat(a11y) / 100,
-      parseFloat(bp) / 100,
-      parseFloat(seo) / 100,
-      safeFractionEval(fnr),
-      safeFractionEval(ins),
-      safeFractionEval(po)
-    ];
+    fnr = safeFractionEval(output.fnr);
+    ins = safeFractionEval(output.ins);
+    po = safeFractionEval(output.po);
   }
 
-  const result = mean(scores);
-  return asPercentage ? `${Math.round(result * 10000) / 100}%` : result;
+  const scores = [
+    perf,
+    a11y,
+    bp,
+    seo,
+    fnr,
+    ins,
+    po
+  ];
+
+  const result = mean(scores)
+  const out = {
+    perf,
+    a11y,
+    bp,
+    seo,
+    pwa: {
+      fnr,
+      ins,
+      po
+    },
+    result
+  };
+
+  if (asPercentage) {
+    return {
+      perf: perc(perf),
+      a11y: perc(a11y),
+      bp: perc(bp),
+      seo: perc(seo),
+      pwa: {
+        fnr: perc(fnr),
+        ins: perc(ins),
+        po: perc(po)
+      },
+      result: perc(result)
+    }
+  }
+
+  return out;
 };
 
 export default avg;
