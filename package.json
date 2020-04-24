@@ -16,7 +16,7 @@
     "test:watch": "jest --watch",
     "coverage:view": "open-cli coverage/lcov-report/index.html",
     "semantic-release": "semantic-release",
-    "lint:lockfile": "lockfile-lint --path package-lock.json --type <%= npmClient %> --validate-https --allowed-hosts npm yarn",
+    "lint:lockfile": "lockfile-lint --path package-lock.json --type npm --validate-https --allowed-hosts npm yarn",
     "lint:md": "remark . .github",
     "doc:lint": "documentation lint index.js",
     "doc:html": "documentation build *.js -f html -o doc/ -a public",
