@@ -22,8 +22,7 @@ interface Result {
     ins: NumLike; // Installable
     po: NumLike; // PWA Optimized
   };
-  result: NumLike;
-  // [key: NumLike]: NumLike;
+  average: NumLike;
 }
 
 const avg = (scoreStr: string, asPercentage = false): Result => {
@@ -47,17 +46,9 @@ const avg = (scoreStr: string, asPercentage = false): Result => {
     po = safeFractionEval(output.po);
   }
 
-  const scores = [
-    perf,
-    a11y,
-    bp,
-    seo,
-    fnr,
-    ins,
-    po
-  ];
+  const scores = [perf, a11y, bp, seo, fnr, ins, po];
 
-  const result = mean(scores)
+  const average = mean(scores);
   const out = {
     perf,
     a11y,
@@ -68,7 +59,7 @@ const avg = (scoreStr: string, asPercentage = false): Result => {
       ins,
       po
     },
-    result
+    average
   };
 
   if (asPercentage) {
@@ -82,8 +73,8 @@ const avg = (scoreStr: string, asPercentage = false): Result => {
         ins: perc(ins),
         po: perc(po)
       },
-      result: perc(result)
-    }
+      average: perc(average)
+    };
   }
 
   return out;
