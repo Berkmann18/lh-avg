@@ -23,8 +23,8 @@ program
       results[str] = avg(str, program.percentage);
     });
 
-    switch (program.format) {
     /* eslint-disable indent */
+    switch (program.format) {
       case 'json':
         console.dir(program.split ? Object.values(results) : results);
         break;
