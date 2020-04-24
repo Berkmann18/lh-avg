@@ -12,7 +12,7 @@ interface LhReGroup {
 // const SHORT_RE = /(?<perf>\d+)\s*\/\s*(?<a11y>\d+)\s*\/\s*(?<bp>\d+)\s*\/\s*(?<seo>\d+)\s*\/\s*\((?<fnr>\d+)(,|\/)\s*(?<ins>\d+)(,|\/)\s*(?<po>\d+)\)/g;
 // const LONG_RE = /(?<perf>\d+)\s*\/\s*(?<a11y>\d+)\s*\/\s*(?<bp>\d+)\s*\/\s*(?<seo>\d+)\s*\/\s*\((?<fnr>\d+\/\d+)(,|\/)\s*(?<ins>\d+\/\d+)(,|\/)\s*(?<po>\d+\/\d+)\)/g;
 
-const split = (scoreStr: string): {output: LhReGroup; shorthandForm: boolean} => {
+const split = (scoreStr: string): { output: LhReGroup; shorthandForm: boolean } => {
   /* eslint-disable security/detect-unsafe-regex */
   const exp = /(?<perf>\d+)\s*\/\s*(?<a11y>\d+)\s*\/\s*(?<bp>\d+)\s*\/\s*(?<seo>\d+)\s*\/\s*\((?<fnr>\d+)(,|\/)\s*(?<ins>\d+)(,|\/)\s*(?<po>\d+)\)/g.exec(
     scoreStr
@@ -34,7 +34,7 @@ const split = (scoreStr: string): {output: LhReGroup; shorthandForm: boolean} =>
   return {
     output: (exp.groups as unknown) as LhReGroup,
     shorthandForm: true
-  }
+  };
 };
 
 export default split;
