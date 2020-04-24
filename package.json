@@ -21,7 +21,10 @@
     "doc:lint": "documentation lint index.js",
     "doc:html": "documentation build *.js -f html -o doc/ -a public",
     "doc": "npm run doc:lint && npm run doc:html",
-    "prepare": "snyk protect"
+    "prepare": "snyk protect",
+    "build": "npm run build:main && npm run build:module",
+    "build:main": "tsc -p tsconfig.json",
+    "build:module": "tsc -p tsconfig.module.json"
   },
   "author": {
     "name": "Maximilian Berkmann",
@@ -50,6 +53,8 @@
     "@semantic-release/github": "^5.4.2",
     "@semantic-release/npm": "^5.1.13",
     "@semantic-release/release-notes-generator": "^7.2.1",
+    "@typescript-eslint/eslint-plugin": "^2.29.0",
+    "@typescript-eslint/parser": "^2.29.0",
     "babel-eslint": "^10.0.1",
     "babel-plugin-syntax-async-functions": "^6.13.0",
     "babel-plugin-transform-regenerator": "^6.26.0",
@@ -76,7 +81,8 @@
     "remark-preset-lint-consistent": "^3.0.0",
     "remark-preset-lint-recommended": "^4.0.0",
     "semantic-release": "^15.13.19",
-    "snyk": "^1.310.0"
+    "snyk": "^1.310.0",
+    "typescript": "^3.8.3"
   },
   "jest": {
     "testEnvironment": "node",
@@ -154,15 +160,20 @@
       "node",
       "security",
       "jest",
-      "jquery"
+      "jquery",
+      "@typescript-eslint"
     ],
     "extends": [
       "eslint:recommended",
       "standard",
+      "plugin:security/recommended",
       "plugin:node/recommended",
-      "plugin:you-dont-need-lodash-underscore/compatible"
+      "plugin:you-dont-need-lodash-underscore/compatible",
+      "plugin:@typescript-eslint/recommended"
     ],
     "rules": {
+      "@typescript-eslint/indent": "off",
+      "@typescript-eslint/no-non-null-assertion": "warn",
       "indent": [
         "error",
         2
@@ -189,21 +200,11 @@
       "jest/no-focused-tests": "error",
       "jest/no-identical-title": "error",
       "node/no-unsupported-features": "off",
-      "node/no-unpublished-require": "off",
-      "security/detect-non-literal-fs-filename": "error",
-      "security/detect-unsafe-regex": "error",
-      "security/detect-buffer-noassert": "error",
-      "security/detect-child-process": "error",
-      "security/detect-disable-mustache-escape": "error",
-      "security/detect-eval-with-expression": "error",
-      "security/detect-no-csrf-before-method-override": "error",
-      "security/detect-non-literal-regexp": "error",
-      "security/detect-object-injection": "warn",
-      "security/detect-possible-timing-attacks": "error",
-      "security/detect-pseudoRandomBytes": "error"
+      "node/no-unpublished-require": "off"
     },
+    "parser": "@typescript-eslint/parser",
     "parserOptions": {
-      "ecmaVersion": 8,
+      "ecmaVersion": 9,
       "ecmaFeatures": {
         "impliedStrict": true
       }
