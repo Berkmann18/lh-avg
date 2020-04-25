@@ -120,7 +120,7 @@
   "husky": {
     "hooks": {
       "commit-msg": "commitlint --env HUSKY_GIT_PARAMS",
-      "pre-commit": "lint-staged",
+      "pre-commit": "lint-staged --debug",
       "post-merge": "npm i",
       "pre-push": "npm run lint && npm t"
     }
