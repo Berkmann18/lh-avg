@@ -1,6 +1,6 @@
 {
   "name": "lh-avg",
-  "version": "0.0.0-development",
+  "version": "1.0.2",
   "description": "LightHouse average calculator",
   "main": "build/main/index.js",
   "module": "build/module/index.js",
