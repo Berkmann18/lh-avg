@@ -62,7 +62,7 @@ const average = require('lh-avg').default;
 ```ts
 import average from 'lh-avg';
 
-const lightHouseScoreString = ''14 / 100 / 98 / 100 / (1, 0, 6)'';
+const lightHouseScoreString = '14 / 100 / 98 / 100 / (1, 0, 6)';
 
 console.log(average(lightHouseScoreString));
 /* {
@@ -85,6 +85,7 @@ console.log(average(lightHouseScoreString, true));
 } */
 
 ```
+For more documentation, please check [`./doc/index.html`](./doc/index.html).
 
 # Contributing
 

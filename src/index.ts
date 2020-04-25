@@ -1,9 +1,18 @@
 import split from './split';
 
+/**
+ * @private
+ */
 const mean = (nums: number[]): number => nums.reduce((acc, val) => acc + val, 0) / nums.length;
 
+/**
+ * @private
+ */
 const perc = (num: number): string => `${Math.round(num * 10000) / 100}%`;
 
+/**
+ * @private
+ */
 const safeFractionEval = (fraction: string): number => {
   // return fraction.split('/').map(parseFloat).reduce((acc, val) => acc / val);
   const [num, denum] = fraction.split('/');
@@ -31,8 +40,10 @@ interface Result {
  * @param {boolean} [asPercentage=false] Return percentages (_as strings_) instead of numbers
  * @returns {Result} Result with the individual scores for each metrics.
  * @example <caption>Spaced</caption>
+ *
+ * ```js
  * average('14 / 100 / 98 / 100 / (1, 0, 6)');
- * // Returns:
+ * /* Returns:
  * {
  *   perf: 0.14,
  *   a11y: 1,
@@ -40,10 +51,14 @@ interface Result {
  *   seo: 1,
  *   pwa: { fnr: 0.3333333333333333, ins: 0, po: 0.8571428571428571 },
  *   average: 0.6157823129251702
- * }
- * @example <caption>Show percentages</caption>
+ * } * /
+ * ```
+ *
+ * @example <caption>Percentages</caption>
+ *
+ * ```js
  * average('14 / 100 / 98 / 100 / (1, 0, 6)', true);
- * // Returns:
+ * /* Returns:
  * {
  *   perf: '14%',
  *   a11y: '100%',
@@ -51,10 +66,14 @@ interface Result {
  *   seo: '100%',
  *   pwa: { fnr: '33.33%', ins: '0%', po: '85.71%' },
  *   average: '61.58%'
- * }
+ * } * /
+ * ```
+ *
  * @example <caption>Compressed</caption>
+ *
+ * ```js
  * average('14/100/98/100/(1,0,6)');
- * // Returns:
+ * /* Returns:
  * {
  *   perf: 0.14,
  *   a11y: 1,
@@ -62,9 +81,9 @@ interface Result {
  *   seo: 1,
  *   pwa: { fnr: 0.3333333333333333, ins: 0, po: 0.8571428571428571 },
  *   average: 0.6157823129251702
- * }
- *
- * For more ways to input scores, please see the unit tests in __tests__/
+ * } * /
+ * ```
+ * For more ways to input scores, please see the unit tests in \_\_tests\_\_/
  */
 const avg = (scoreStr: string, asPercentage = false): Result => {
   const { output, shorthandForm } = split(scoreStr);
