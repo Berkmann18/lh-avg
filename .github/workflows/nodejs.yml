@@ -10,24 +10,23 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    # strategy:
-    #   matrix:
-    #       node-version: ['lts/*', 'stable'] #[12.x, 14.x]
+    strategy:
+      matrix:
+          node-version: ['lts/*', 'stable'] #[12.x, 14.x]
 
     steps:
-    - uses: actions/checkout@v2 #v2
+    - uses: actions/checkout@v2
     # - name: Use Node.js ${{ matrix.node-version }}
     #   uses: actions/setup-node@v1
-    - name: Set up node using nvm
+    - name: Set up Node ${{ matrix.node-version }} using nvm
       uses: dcodeIO/setup-node-nvm@master #v4.0.0
       with:
-        node-version: lts/*
-    # TODO Use https://github.com/marketplace/actions/codecov
+        node-version: ${{ matrix.node-version }}
     - run: |
       npm ci
       npm run lint
       npm run build --if-present
-    - run: npm t # && codecov
+    - run: npm t
       env:
         CI: true
-      # npm i -g codecov
+    # TODO Use https://github.com/marketplace/actions/codecov
