@@ -39,6 +39,7 @@ interface Result {
  * @param {string} scoreStr Lighthouse score string of the form ('num / num / num / num / (num, num, num)')
  * @param {boolean} [asPercentage=false] Return percentages (_as strings_) instead of numbers
  * @returns {Result} Result with the individual scores for each metrics.
+ * @private
  */
 const avg = (scoreStr: string, asPercentage = false): Result => {
   const { output, shorthandForm } = split(scoreStr);
@@ -96,7 +97,7 @@ const avg = (scoreStr: string, asPercentage = false): Result => {
 };
 
 /**
- * Lighthouse average score calculator.
+ * Lighthouse average scores calculator.
  * @param {string[]} scoreStrings List of Lighthouse score strings of the form ('num / num / num / num / (num, num, num)')
  * @param {boolean} [asPercentage=false] Return percentages (_as strings_) instead of numbers
  * @returns {Result[]} Results with the individual scores for each metrics.

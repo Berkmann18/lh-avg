@@ -85,7 +85,8 @@
 						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_index_.html#avg" class="tsd-kind-icon">avg</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module"><a href="_index_.html#average" class="tsd-kind-icon">average</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported"><a href="_index_.html#avg" class="tsd-kind-icon">avg</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported"><a href="_index_.html#mean" class="tsd-kind-icon">mean</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported"><a href="_index_.html#perc" class="tsd-kind-icon">perc</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported"><a href="_index_.html#safefractioneval" class="tsd-kind-icon">safe<wbr>Fraction<wbr>Eval</a></li>
@@ -102,7 +103,7 @@
 					<div class="tsd-signature tsd-kind-icon">Num<wbr>Like<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Berkmann18/lh-avg/blob/e94058a/src/index.ts#L22">index.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/Berkmann18/lh-avg/blob/94e1f68/src/index.ts#L22">index.ts:22</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -110,64 +111,101 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Functions</h2>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
-					<a name="avg" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagConst">Const</span> avg</h3>
+					<a name="average" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> average</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">avg<span class="tsd-signature-symbol">(</span>scoreStr<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, asPercentage<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_index_.result.html" class="tsd-signature-type">Result</a></li>
+						<li class="tsd-signature tsd-kind-icon">average<span class="tsd-signature-symbol">(</span>scoreStrings<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, asPercentage<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_index_.result.html" class="tsd-signature-type">Result</a><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Berkmann18/lh-avg/blob/e94058a/src/index.ts#L88">index.ts:88</a></li>
+									<li>Defined in <a href="https://github.com/Berkmann18/lh-avg/blob/94e1f68/src/index.ts#L150">index.ts:150</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Lighthouse average score calculator.</p>
+									<p>Lighthouse average scores calculator.</p>
 								</div>
 								<dl class="tsd-comment-tags">
 									<dt>example</dt>
 									<dd><caption>Spaced</caption>
-										<pre><code class="language-js">average(<span class="hljs-string">'14 / 100 / 98 / 100 / (1, 0, 6)'</span>);
+										<pre><code class="language-js">average([<span class="hljs-string">'14 / 100 / 98 / 100 / (1, 0, 6)'</span>]);
 <span class="hljs-comment">/* Returns:
-{
+[{
   perf: 0.14,
   a11y: 1,
   bp: 0.98,
   seo: 1,
   pwa: { fnr: 0.3333333333333333, ins: 0, po: 0.8571428571428571 },
   average: 0.6157823129251702
-} * /</span></code></pre>
+}] * /</span></code></pre>
 									</dd>
 									<dt>example</dt>
 									<dd><caption>Percentages</caption>
-										<pre><code class="language-js">average(<span class="hljs-string">'14 / 100 / 98 / 100 / (1, 0, 6)'</span>, <span class="hljs-literal">true</span>);
+										<pre><code class="language-js">average([<span class="hljs-string">'14 / 100 / 98 / 100 / (1, 0, 6)'</span>], <span class="hljs-literal">true</span>);
 <span class="hljs-comment">/* Returns:
-{
+[{
   perf: '14%',
   a11y: '100%',
   bp: '98%',
   seo: '100%',
   pwa: { fnr: '33.33%', ins: '0%', po: '85.71%' },
   average: '61.58%'
-} * /</span></code></pre>
+}] * /</span></code></pre>
 									</dd>
 									<dt>example</dt>
 									<dd><caption>Compressed</caption>
-										<pre><code class="language-js">average(<span class="hljs-string">'14/100/98/100/(1,0,6)'</span>);
+										<pre><code class="language-js">average([<span class="hljs-string">'14/100/98/100/(1,0,6)'</span>]);
 <span class="hljs-comment">/* Returns:
-{
+[{
   perf: 0.14,
   a11y: 1,
   bp: 0.98,
   seo: 1,
   pwa: { fnr: 0.3333333333333333, ins: 0, po: 0.8571428571428571 },
   average: 0.6157823129251702
-} * /</span></code></pre>
+}] * /</span></code></pre>
 										<p>For more ways to input scores, please see the unit tests in __tests__/</p>
 									</dd>
 								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>scoreStrings: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>List of Lighthouse score strings of the form (&#39;num / num / num / num / (num, num, num)&#39;)</p>
+										</div>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> asPercentage: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = false</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_index_.result.html" class="tsd-signature-type">Result</a><span class="tsd-signature-symbol">[]</span></h4>
+							<p>Results with the individual scores for each metrics.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+					<a name="avg" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagConst">Const</span> avg</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">avg<span class="tsd-signature-symbol">(</span>scoreStr<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, asPercentage<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_index_.result.html" class="tsd-signature-type">Result</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/Berkmann18/lh-avg/blob/94e1f68/src/index.ts#L44">index.ts:44</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Lighthouse average score calculator.</p>
+								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -198,7 +236,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Berkmann18/lh-avg/blob/e94058a/src/index.ts#L6">index.ts:6</a></li>
+									<li>Defined in <a href="https://github.com/Berkmann18/lh-avg/blob/94e1f68/src/index.ts#L6">index.ts:6</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -223,7 +261,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Berkmann18/lh-avg/blob/e94058a/src/index.ts#L11">index.ts:11</a></li>
+									<li>Defined in <a href="https://github.com/Berkmann18/lh-avg/blob/94e1f68/src/index.ts#L11">index.ts:11</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -248,7 +286,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Berkmann18/lh-avg/blob/e94058a/src/index.ts#L16">index.ts:16</a></li>
+									<li>Defined in <a href="https://github.com/Berkmann18/lh-avg/blob/94e1f68/src/index.ts#L16">index.ts:16</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -288,6 +326,9 @@
 						<a href="_index_.html#numlike" class="tsd-kind-icon">Num<wbr>Like</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
+						<a href="_index_.html#average" class="tsd-kind-icon">average</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">
 						<a href="_index_.html#avg" class="tsd-kind-icon">avg</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-private tsd-is-not-exported">

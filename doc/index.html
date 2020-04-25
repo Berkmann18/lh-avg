@@ -73,16 +73,21 @@
 						lh-avg
 					</h1>
 					<p align="center">
-						LightHouse average calculator
+						LightHouse Average calculator
 					</p>
 					<p align="center">
-						<a href="https://www.npmjs.org/package/lh-avg"><img src="https://badgen.net/npm/v/lh-avg" alt="npm version"/></a>
-						<a href="https://www.npmjs.org/package/lh-avg"><img src="https://badgen.net/npm/license/lh-avg" alt="license"/></a>
-						<a href="https://www.npmjs.org/package/lh-avg"><img src="https://badgen.net/npm/dt/lh-avg" alt="downloads"/></a>
-						<a href="https://travis-ci.org/berkmann18/lh-avg"><img src="https://badgen.net/travis/berkmann18/lh-avg" alt="build"/></a>
-						<a href="https://codecov.io/gh/berkmann18/lh-avg"><img src="https://badgen.net/codecov/c/github/berkmann18/lh-avg" alt="codecov"/></a>
-						<a href="https://snyk.io/test/github/berkmann18/lh-avg"><img src="https://snyk.io/test/github/berkmann18/lh-avg/badge.svg" alt="Known Vulnerabilities"/></a>
-						<a href="./SECURITY.md"><img src="https://img.shields.io/badge/Security-Responsible%20Disclosure-yellow.svg" alt="Responsible Disclosure Policy" /></a>
+						<a href="https://nodei.co/npm/lh-avg/"><img src="https://nodei.co/npm/lh-avg.png" alt="NPM"></a>
+						<p>  <a href="https://github.com/Berkmann18/lh-avg/actions?query=workflow%3A%22Node.js+CI%22"><img src="https://github.com/Berkmann18/lh-avg/workflows/Node.js%20CI/badge.svg" alt="Node.js CI"></a></p>
+						<p>  <a href="https://www.npmjs.org/package/lh-avg"><img src="https://badgen.net/npm/license/lh-avg" alt="license"/></a>
+							<a href="https://www.npmjs.org/package/lh-avg"><img src="https://badgen.net/npm/dt/lh-avg" alt="downloads"/></a>
+							<a href="https://codecov.io/gh/berkmann18/lh-avg"><img src="https://badgen.net/codecov/c/github/berkmann18/lh-avg" alt="codecov"/></a>
+							<a href="https://snyk.io/test/github/berkmann18/lh-avg"><img src="https://snyk.io/test/github/berkmann18/lh-avg/badge.svg" alt="Known Vulnerabilities"/></a>
+							<a href="./SECURITY.md"><img src="https://img.shields.io/badge/Security-Responsible%20Disclosure-yellow.svg" alt="Responsible Disclosure Policy" /></a>
+							<a href="http://commitizen.github.io/cz-cli/"><img src="https://img.shields.io/badge/commitizen-friendly-brightgreen.svg" alt="Commitizen friendly"></a>
+							<a href="https://github.com/Berkmann18/lh-avg"><img src="https://img.shields.io/github/languages/code-size/Berkmann18/lh-avg.svg" alt="GitHub code size in bytes"></a>
+							<a href="https://bettercodehub.com/results/Berkmann18/lh-avg"><img src="https://bettercodehub.com/edge/badge/Berkmann18/lh-avg?branch=master" alt="BCH compliance"></a>
+							<a href="https://app.codacy.com/app/maxieberkmann/lh-avg?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Berkmann18/lh-avg&amp;utm_campaign=Badge_Grade_Dashboard"><img src="https://api.codacy.com/project/badge/Grade/2a8e3e98d3bb47f29abbc3df7174675d" alt="Codacy Badge"></a>
+						<a href="https://github.com/semantic-release/semantic-release"><img src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg" alt="semantic-release"></a></p>
 					</p>
 					<a href="#about" id="about" style="color: inherit; text-decoration: none;">
 						<h1>About</h1>
@@ -118,12 +123,11 @@ Options:
 					<a href="#example" id="example" style="color: inherit; text-decoration: none;">
 						<h1>Example</h1>
 					</a>
-					<!-- TODO -->
 					<pre><code class="language-ts"><span class="hljs-keyword">import</span> average <span class="hljs-keyword">from</span> <span class="hljs-string">'lh-avg'</span>;
 
-<span class="hljs-keyword">const</span> lightHouseScoreString = <span class="hljs-string">''</span><span class="hljs-number">14</span> / <span class="hljs-number">100</span> / <span class="hljs-number">98</span> / <span class="hljs-number">100</span> / (<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">6</span>)<span class="hljs-string">''</span>;
+<span class="hljs-keyword">const</span> lightHouseScores = [<span class="hljs-string">'14 / 100 / 98 / 100 / (1, 0, 6)'</span>];
 
-<span class="hljs-built_in">console</span>.log(average(lightHouseScoreString));
+<span class="hljs-built_in">console</span>.log(average(lightHouseScores));
 <span class="hljs-comment">/* {
   perf: 0.14,
   a11y: 1,
@@ -133,7 +137,7 @@ Options:
   average: 0.6157823129251702
 } */</span>
 
-<span class="hljs-built_in">console</span>.log(average(lightHouseScoreString, <span class="hljs-literal">true</span>));
+<span class="hljs-built_in">console</span>.log(average(lightHouseScores, <span class="hljs-literal">true</span>));
 <span class="hljs-comment">/* {
   perf: '14%',
   a11y: '100%',
@@ -141,8 +145,8 @@ Options:
   seo: '100%',
   pwa: { fnr: '33.33%', ins: '0%', po: '85.71%' },
   average: '61.58%'
-} */</span>
-</code></pre>
+} */</span></code></pre>
+					<p>For more documentation, please check <a href="./doc/index.html"><code>./doc/index.html</code></a>.</p>
 					<a href="#contributing" id="contributing" style="color: inherit; text-decoration: none;">
 						<h1>Contributing</h1>
 					</a>
