@@ -126,7 +126,7 @@
     }
   },
   "lint-staged": {
-    "**/*.(j|t)s": [
+    "(src/*.ts)|(*.js)": [
       "npm run format"
     ],
     "*.md": [
