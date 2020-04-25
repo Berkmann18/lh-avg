@@ -4,13 +4,13 @@ node_js:
   - 'stable'
   - 'lts/*'
 before_script:
+  - npm run build
   - npm run lint
 install:
   - npm ci
   - snyk auth $SNYK_TOKEN
   - npm i -g codecov
 script:
-  - npm run build
   - npm t
   - codecov
 after_success:
