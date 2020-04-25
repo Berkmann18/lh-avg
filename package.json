@@ -67,7 +67,6 @@
     "babel-plugin-transform-regenerator": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "cz-conventional-changelog": "^1.2.0",
-    "documentation": "^12.3.0",
     "eslint": "^6.0.1",
     "eslint-config-standard": "^13.0.1",
     "eslint-plugin-import": "^2.18.0",
@@ -157,7 +156,8 @@
     "coverage/**",
     "*.min.js",
     "dist",
-    "build"
+    "build",
+    "doc"
   ],
   "eslintConfig": {
     "env": {
