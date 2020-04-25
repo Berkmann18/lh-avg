@@ -10,6 +10,7 @@ install:
   - snyk auth $SNYK_TOKEN
   - npm i -g codecov
 script:
+  - npm run build
   - npm t
   - codecov
 after_success:
