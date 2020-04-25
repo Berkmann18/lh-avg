@@ -5,6 +5,7 @@ labels: 'Type: Bug :bug:, Priority: Medium'
 ---
 
 <!--- Provide a general summary of the issue in the Title above -->
+<!--lint disable heading-style -->
 
 ## Expected Behaviour
 
