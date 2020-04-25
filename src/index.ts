@@ -39,51 +39,6 @@ interface Result {
  * @param {string} scoreStr Lighthouse score string of the form ('num / num / num / num / (num, num, num)')
  * @param {boolean} [asPercentage=false] Return percentages (_as strings_) instead of numbers
  * @returns {Result} Result with the individual scores for each metrics.
- * @example <caption>Spaced</caption>
- *
- * ```js
- * average('14 / 100 / 98 / 100 / (1, 0, 6)');
- * /* Returns:
- * {
- *   perf: 0.14,
- *   a11y: 1,
- *   bp: 0.98,
- *   seo: 1,
- *   pwa: { fnr: 0.3333333333333333, ins: 0, po: 0.8571428571428571 },
- *   average: 0.6157823129251702
- * } * /
- * ```
- *
- * @example <caption>Percentages</caption>
- *
- * ```js
- * average('14 / 100 / 98 / 100 / (1, 0, 6)', true);
- * /* Returns:
- * {
- *   perf: '14%',
- *   a11y: '100%',
- *   bp: '98%',
- *   seo: '100%',
- *   pwa: { fnr: '33.33%', ins: '0%', po: '85.71%' },
- *   average: '61.58%'
- * } * /
- * ```
- *
- * @example <caption>Compressed</caption>
- *
- * ```js
- * average('14/100/98/100/(1,0,6)');
- * /* Returns:
- * {
- *   perf: 0.14,
- *   a11y: 1,
- *   bp: 0.98,
- *   seo: 1,
- *   pwa: { fnr: 0.3333333333333333, ins: 0, po: 0.8571428571428571 },
- *   average: 0.6157823129251702
- * } * /
- * ```
- * For more ways to input scores, please see the unit tests in \_\_tests\_\_/
  */
 const avg = (scoreStr: string, asPercentage = false): Result => {
   const { output, shorthandForm } = split(scoreStr);
@@ -140,4 +95,60 @@ const avg = (scoreStr: string, asPercentage = false): Result => {
   return out;
 };
 
-export default avg;
+/**
+ * Lighthouse average score calculator.
+ * @param {string[]} scoreStrings List of Lighthouse score strings of the form ('num / num / num / num / (num, num, num)')
+ * @param {boolean} [asPercentage=false] Return percentages (_as strings_) instead of numbers
+ * @returns {Result[]} Results with the individual scores for each metrics.
+ * @example <caption>Spaced</caption>
+ *
+ * ```js
+ * average(['14 / 100 / 98 / 100 / (1, 0, 6)']);
+ * /* Returns:
+ * [{
+ *   perf: 0.14,
+ *   a11y: 1,
+ *   bp: 0.98,
+ *   seo: 1,
+ *   pwa: { fnr: 0.3333333333333333, ins: 0, po: 0.8571428571428571 },
+ *   average: 0.6157823129251702
+ * }] * /
+ * ```
+ *
+ * @example <caption>Percentages</caption>
+ *
+ * ```js
+ * average(['14 / 100 / 98 / 100 / (1, 0, 6)'], true);
+ * /* Returns:
+ * [{
+ *   perf: '14%',
+ *   a11y: '100%',
+ *   bp: '98%',
+ *   seo: '100%',
+ *   pwa: { fnr: '33.33%', ins: '0%', po: '85.71%' },
+ *   average: '61.58%'
+ * }] * /
+ * ```
+ *
+ * @example <caption>Compressed</caption>
+ *
+ * ```js
+ * average(['14/100/98/100/(1,0,6)']);
+ * /* Returns:
+ * [{
+ *   perf: 0.14,
+ *   a11y: 1,
+ *   bp: 0.98,
+ *   seo: 1,
+ *   pwa: { fnr: 0.3333333333333333, ins: 0, po: 0.8571428571428571 },
+ *   average: 0.6157823129251702
+ * }] * /
+ * ```
+ * For more ways to input scores, please see the unit tests in \_\_tests\_\_/
+ */
+const average = (scoreStrings: string[], asPercentage = false): Result[] => {
+  const results = scoreStrings.map((str) => avg(str, asPercentage));
+  return results;
+};
+
+export default average;
