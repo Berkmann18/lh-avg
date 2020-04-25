@@ -1,5 +1,6 @@
 exclude:
-    - /dist/.*
+    - /build/.*
+    - /doc/.*
 
 languages:
     - javascript
