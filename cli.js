@@ -2,6 +2,7 @@
 
 const { program } = require('commander');
 const pkg = require('./package.json');
+// eslint-disable-next-line node/no-missing-require
 const avg = require('./build/main').default;
 
 /*
