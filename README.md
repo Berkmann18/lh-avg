@@ -80,7 +80,6 @@ console.log(average(lightHouseScoreString, true));
   pwa: { fnr: '33.33%', ins: '0%', po: '85.71%' },
   average: '61.58%'
 } */
-
 ```
 For more documentation, please check [`./doc/index.html`](./doc/index.html).
 
