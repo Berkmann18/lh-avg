@@ -8,17 +8,24 @@
 </h1>
 
 <p align="center">
-  LightHouse average calculator
+  LightHouse Average calculator
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.org/package/lh-avg"><img src="https://badgen.net/npm/v/lh-avg" alt="npm version"/></a>
+  <a href="https://nodei.co/npm/lh-avg/"><img src="https://nodei.co/npm/lh-avg.png" alt="NPM"></a>
+
+  <a href="https://github.com/Berkmann18/lh-avg/actions?query=workflow%3A%22Node.js+CI%22"><img src="https://github.com/Berkmann18/lh-avg/workflows/Node.js%20CI/badge.svg" alt="Node.js CI"></a>
+
   <a href="https://www.npmjs.org/package/lh-avg"><img src="https://badgen.net/npm/license/lh-avg" alt="license"/></a>
   <a href="https://www.npmjs.org/package/lh-avg"><img src="https://badgen.net/npm/dt/lh-avg" alt="downloads"/></a>
-  <a href="https://travis-ci.org/berkmann18/lh-avg"><img src="https://badgen.net/travis/berkmann18/lh-avg" alt="build"/></a>
   <a href="https://codecov.io/gh/berkmann18/lh-avg"><img src="https://badgen.net/codecov/c/github/berkmann18/lh-avg" alt="codecov"/></a>
   <a href="https://snyk.io/test/github/berkmann18/lh-avg"><img src="https://snyk.io/test/github/berkmann18/lh-avg/badge.svg" alt="Known Vulnerabilities"/></a>
   <a href="./SECURITY.md"><img src="https://img.shields.io/badge/Security-Responsible%20Disclosure-yellow.svg" alt="Responsible Disclosure Policy" /></a>
+  <a href="http://commitizen.github.io/cz-cli/"><img src="https://img.shields.io/badge/commitizen-friendly-brightgreen.svg" alt="Commitizen friendly"></a>
+  <a href="https://github.com/Berkmann18/lh-avg"><img src="https://img.shields.io/github/languages/code-size/Berkmann18/lh-avg.svg" alt="GitHub code size in bytes"></a>
+  <a href="https://bettercodehub.com/results/Berkmann18/lh-avg"><img src="https://bettercodehub.com/edge/badge/Berkmann18/lh-avg?branch=master" alt="BCH compliance"></a>
+  <a href="https://app.codacy.com/app/maxieberkmann/lh-avg?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Berkmann18/lh-avg&amp;utm_campaign=Badge_Grade_Dashboard"><img src="https://api.codacy.com/project/badge/Grade/2a8e3e98d3bb47f29abbc3df7174675d" alt="Codacy Badge"></a>
+  <a href="https://github.com/semantic-release/semantic-release"><img src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg" alt="semantic-release"></a>
 </p>
 
 # About
@@ -34,7 +41,9 @@ npm install --save lh-avg
 ```
 
 # Usage
+
 ## CLI
+
 ```
 Usage: cli [options] <scoreStrings...>
 
@@ -49,6 +58,7 @@ Options:
 ```
 
 ## ES Module
+
 ```js
 import average from 'lh-avg';
 // Or
@@ -56,6 +66,7 @@ const average = require('lh-avg').default;
 ```
 
 # Example
+
 ```ts
 import average from 'lh-avg';
 
@@ -81,6 +92,7 @@ console.log(average(lightHouseScoreString, true));
   average: '61.58%'
 } */
 ```
+
 For more documentation, please check [`./doc/index.html`](./doc/index.html).
 
 # Contributing
@@ -100,6 +112,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
