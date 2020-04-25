@@ -22,9 +22,7 @@
     "semantic-release": "semantic-release",
     "lint:lockfile": "lockfile-lint --path package-lock.json --type npm --validate-https --allowed-hosts npm yarn",
     "lint:md": "remark . .github",
-    "doc:lint": "documentation lint src/*.ts",
-    "doc:html": "documentation build src/*.ts -f html -o doc/ -a public",
-    "doc": "npm run doc:lint && npm run doc:html",
+    "doc": "typedoc --out doc src",
     "prepare": "snyk protect",
     "build": "npm run build:main && npm run build:module",
     "build:main": "tsc -p tsconfig.json",
@@ -69,7 +67,6 @@
     "babel-plugin-transform-regenerator": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "cz-conventional-changelog": "^1.2.0",
-    "documentation": "^12.3.0",
     "eslint": "^6.0.1",
     "eslint-config-standard": "^13.0.1",
     "eslint-plugin-import": "^2.18.0",
@@ -92,6 +89,7 @@
     "semantic-release": "^15.13.19",
     "snyk": "^1.310.0",
     "ts-jest": "^25.4.0",
+    "typedoc": "^0.17.4",
     "typescript": "^3.8.3"
   },
   "jest": {
@@ -158,7 +156,8 @@
     "coverage/**",
     "*.min.js",
     "dist",
-    "build"
+    "build",
+    "doc"
   ],
   "eslintConfig": {
     "env": {

@@ -34,15 +34,54 @@ npm install --save lh-avg
 ```
 
 # Usage
+## CLI
+```
+Usage: cli [options] <scoreStrings...>
 
+LightHouse average calculator
+
+Options:
+  -V, --version          output the version number
+  -p, --percentage       Return the result(s) in percentage form
+  -f, --format <format>  Return the result(s) in a specific format (json, csv, md, html), default: text
+  -s, --split            Split the string by metric
+  -h, --help             display help for command
+```
+
+## ES Module
 ```js
-// @TODO
-const {} = require('lh-avg')
+import average from 'lh-avg';
+// Or
+const average = require('lh-avg').default;
 ```
 
 # Example
+```ts
+import average from 'lh-avg';
 
-<!-- TODO -->
+const lightHouseScoreString = '14 / 100 / 98 / 100 / (1, 0, 6)';
+
+console.log(average(lightHouseScoreString));
+/* {
+  perf: 0.14,
+  a11y: 1,
+  bp: 0.98,
+  seo: 1,
+  pwa: { fnr: 0.3333333333333333, ins: 0, po: 0.8571428571428571 },
+  average: 0.6157823129251702
+} */
+
+console.log(average(lightHouseScoreString, true));
+/* {
+  perf: '14%',
+  a11y: '100%',
+  bp: '98%',
+  seo: '100%',
+  pwa: { fnr: '33.33%', ins: '0%', po: '85.71%' },
+  average: '61.58%'
+} */
+```
+For more documentation, please check [`./doc/index.html`](./doc/index.html).
 
 # Contributing
 
