@@ -34,7 +34,6 @@ npm install --save lh-avg
 ```
 
 # Usage
-
 ## CLI
 ```
 Usage: cli [options] <scoreStrings...>
@@ -57,8 +56,6 @@ const average = require('lh-avg').default;
 ```
 
 # Example
-
-<!-- TODO -->
 ```ts
 import average from 'lh-avg';
 
