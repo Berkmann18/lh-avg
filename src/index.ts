@@ -188,7 +188,6 @@ const average = (
       res.name = names[idx];
     });
   }
-
   if (showDiff) {
     const ref = results[0];
     const refPwa = ref.pwa as SubObj;
@@ -196,7 +195,6 @@ const average = (
     if (asPercentage) {
       for (let idx = 1; idx < scoreStrings.length; ++idx) {
         ['perf', 'a11y', 'bp', 'seo', 'average'].forEach((key) => {
-          // console.log(`key=${key}\n\tl=${parseFloat(results[idx][key] as string)}  r=${parseFloat(ref[key] as string)}`);
           results[idx][key] =
             parseFloat(results[idx][key] as string) - parseFloat(ref[key] as string);
           const better = results[idx][key] > 0;
@@ -227,6 +225,7 @@ const average = (
       });
     }
   }
+
   return results;
 };
 
