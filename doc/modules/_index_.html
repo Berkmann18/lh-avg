@@ -80,6 +80,8 @@
 							<h3>Type aliases</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-is-not-exported"><a href="_index_.html#numlike" class="tsd-kind-icon">Num<wbr>Like</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-is-not-exported"><a href="_index_.html#resultkey" class="tsd-kind-icon">Result<wbr>Key</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-module tsd-is-not-exported"><a href="_index_.html#subobj" class="tsd-kind-icon">Sub<wbr>Obj</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -103,7 +105,27 @@
 					<div class="tsd-signature tsd-kind-icon">Num<wbr>Like<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Berkmann18/lh-avg/blob/94e1f68/src/index.ts#L22">index.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/Berkmann18/lh-avg/blob/4a32651/src/index.ts#L22">index.ts:22</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-is-not-exported">
+					<a name="resultkey" class="tsd-anchor"></a>
+					<h3>Result<wbr>Key</h3>
+					<div class="tsd-signature tsd-kind-icon">Result<wbr>Key<span class="tsd-signature-symbol">:</span> <a href="_index_.html#numlike" class="tsd-signature-type">NumLike</a><span class="tsd-signature-symbol"> | </span><a href="_index_.html#subobj" class="tsd-signature-type">SubObj</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/Berkmann18/lh-avg/blob/4a32651/src/index.ts#L24">index.ts:24</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-module tsd-is-not-exported">
+					<a name="subobj" class="tsd-anchor"></a>
+					<h3>Sub<wbr>Obj</h3>
+					<div class="tsd-signature tsd-kind-icon">Sub<wbr>Obj<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Record</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><a href="_index_.html#numlike" class="tsd-signature-type">NumLike</a><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/Berkmann18/lh-avg/blob/4a32651/src/index.ts#L23">index.ts:23</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -114,13 +136,13 @@
 					<a name="average" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> average</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-						<li class="tsd-signature tsd-kind-icon">average<span class="tsd-signature-symbol">(</span>scoreStrings<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, asPercentage<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_index_.result.html" class="tsd-signature-type">Result</a><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon">average<span class="tsd-signature-symbol">(</span>scoreStrings<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, asPercentage<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span>, showDiff<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../interfaces/_index_.result.html" class="tsd-signature-type">Result</a><span class="tsd-signature-symbol">[]</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Berkmann18/lh-avg/blob/94e1f68/src/index.ts#L150">index.ts:150</a></li>
+									<li>Defined in <a href="https://github.com/Berkmann18/lh-avg/blob/4a32651/src/index.ts#L177">index.ts:177</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -166,6 +188,27 @@
   pwa: { fnr: 0.3333333333333333, ins: 0, po: 0.8571428571428571 },
   average: 0.6157823129251702
 }] * /</span></code></pre>
+									</dd>
+									<dt>example</dt>
+									<dd><caption>Difference</caption>
+										<pre><code class="language-js">average([<span class="hljs-string">'14 / 100 / 98 / 100 / (1, 0, 6)'</span>, <span class="hljs-string">'28 / 100 / 97 / 100 / (1, 2, 6)'</span>], <span class="hljs-literal">false</span>, <span class="hljs-literal">true</span>);
+<span class="hljs-comment">/* Returns:
+[{
+  perf: 0.14,
+  a11y: 1,
+  bp: 0.98,
+  seo: 1,
+  pwa: { fnr: 0.3333333333333333, ins: 0, po: 0.8571428571428571 },
+  average: 0.6157823129251702
+},
+{
+  perf: 0.14,
+  a11y: 0,
+  bp: -0.01,
+  seo: 1,
+  pwa: { fnr: 0, ins: 0.66666666666666, po: 0.8571428571428571 },
+  average: 0.1138095238095237
+}] * /</span></code></pre>
 										<p>For more ways to input scores, please see the unit tests in __tests__/</p>
 									</dd>
 								</dl>
@@ -183,6 +226,9 @@
 								<li>
 									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> asPercentage: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = false</span></h5>
 								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> showDiff: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = false</span></h5>
+								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="../interfaces/_index_.result.html" class="tsd-signature-type">Result</a><span class="tsd-signature-symbol">[]</span></h4>
 							<p>Results with the individual scores for each metrics.</p>
@@ -199,7 +245,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Berkmann18/lh-avg/blob/94e1f68/src/index.ts#L44">index.ts:44</a></li>
+									<li>Defined in <a href="https://github.com/Berkmann18/lh-avg/blob/4a32651/src/index.ts#L47">index.ts:47</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -236,7 +282,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Berkmann18/lh-avg/blob/94e1f68/src/index.ts#L6">index.ts:6</a></li>
+									<li>Defined in <a href="https://github.com/Berkmann18/lh-avg/blob/4a32651/src/index.ts#L6">index.ts:6</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -261,7 +307,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Berkmann18/lh-avg/blob/94e1f68/src/index.ts#L11">index.ts:11</a></li>
+									<li>Defined in <a href="https://github.com/Berkmann18/lh-avg/blob/4a32651/src/index.ts#L11">index.ts:11</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -286,7 +332,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Berkmann18/lh-avg/blob/94e1f68/src/index.ts#L16">index.ts:16</a></li>
+									<li>Defined in <a href="https://github.com/Berkmann18/lh-avg/blob/4a32651/src/index.ts#L16">index.ts:16</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -324,6 +370,12 @@
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-is-not-exported">
 						<a href="_index_.html#numlike" class="tsd-kind-icon">Num<wbr>Like</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-is-not-exported">
+						<a href="_index_.html#resultkey" class="tsd-kind-icon">Result<wbr>Key</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-module tsd-is-not-exported">
+						<a href="_index_.html#subobj" class="tsd-kind-icon">Sub<wbr>Obj</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-module">
 						<a href="_index_.html#average" class="tsd-kind-icon">average</a>

@@ -138,3 +138,53 @@ describe('Compressed', () => {
     expect(() => avg(['13/94/86/75'])).toThrow('Invalid expression!');
   });
 });
+
+describe('diff', () => {
+  /* eslint-disable security/detect-object-injection */
+  test('normal', () => {
+    const actual = avg(['13 / 94 / 86 / 75 / (0, 0, 2)', '26 / 100 / 85 / 75 / (0, 0, 2)'], false, true);
+    const expected = {
+      perf: 0.13,
+      a11y: 0.06,
+      bp: -0.01,
+      seo: 0,
+      pwa: {
+        fnr: 0,
+        ins: 0,
+        po: 0
+      },
+      average: 0.02571428571428576
+    };
+    expect(actual[0]).toEqual(OUTPUT[0]);
+    ['perf', 'a11y', 'bp', 'seo', 'average'].forEach(key => {
+      expect(actual[1][key]).toBeCloseTo(expected[key], 5);
+    });
+    ['fnr', 'ins', 'po'].forEach(key => {
+      expect(actual[1].pwa[key]).toBeCloseTo(expected.pwa[key], 5);
+    });
+  });
+
+  test('percentage', () => {
+    const actual = avg(['13 / 94 / 86 / 75 / (0, 0, 2)', '26 / 100 / 85 / 75 / (0, 0, 2)'], true, true);
+    const expected = {
+      perf: '13%',
+      a11y: '6%',
+      bp: '-1%',
+      seo: '0%',
+      pwa: {
+        fnr: '0%',
+        ins: '0%',
+        po: '0%'
+      },
+      average: '2.57%'
+    };
+    expect(actual[0]).toEqual(PERC_OUTPUT[0]);
+    ['perf', 'a11y', 'bp', 'seo', 'average'].forEach(key => {
+      expect(actual[1][key]).toEqual(expected[key]);
+    });
+
+    ['fnr', 'ins', 'po'].forEach(key => {
+      expect(actual[1].pwa[key]).toEqual(expected.pwa[key]);
+    });
+  });
+});
