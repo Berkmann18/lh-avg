@@ -140,6 +140,7 @@ describe('Compressed', () => {
 });
 
 describe('diff', () => {
+  /* eslint-disable security/detect-object-injection */
   test('normal', () => {
     const actual = avg(['13 / 94 / 86 / 75 / (0, 0, 2)', '26 / 100 / 85 / 75 / (0, 0, 2)'], false, true);
     const expected = {
@@ -156,11 +157,9 @@ describe('diff', () => {
     };
     expect(actual[0]).toEqual(OUTPUT[0]);
     ['perf', 'a11y', 'bp', 'seo', 'average'].forEach(key => {
-      // eslint-disable-next-line security/detect-object-injection
       expect(actual[1][key]).toBeCloseTo(expected[key], 5);
     });
     ['fnr', 'ins', 'po'].forEach(key => {
-      // eslint-disable-next-line security/detect-object-injection
       expect(actual[1].pwa[key]).toBeCloseTo(expected.pwa[key], 5);
     });
   });
@@ -181,13 +180,11 @@ describe('diff', () => {
     };
     expect(actual[0]).toEqual(PERC_OUTPUT[0]);
     ['perf', 'a11y', 'bp', 'seo', 'average'].forEach(key => {
-      // eslint-disable-next-line security/detect-object-injection
-      expect(actual[1][key]).toEqual(expected[key]); // .toBeCloseTo(expected[key], 5);
+      expect(actual[1][key]).toEqual(expected[key]);
     });
 
-    // ['fnr', 'ins', 'po'].forEach(key => {
-    //   // eslint-disable-next-line security/detect-object-injection
-    //   expect(actual[1].pwa[key]).toBeCloseTo(expected.pwa[key], 5);
-    // });
+    ['fnr', 'ins', 'po'].forEach(key => {
+      expect(actual[1].pwa[key]).toEqual(expected.pwa[key]);
+    });
   });
 });
