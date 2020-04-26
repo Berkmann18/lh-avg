@@ -167,16 +167,16 @@ describe('diff', () => {
   test('percentage', () => {
     const actual = avg(['13 / 94 / 86 / 75 / (0, 0, 2)', '26 / 100 / 85 / 75 / (0, 0, 2)'], true, true);
     const expected = {
-      perf: '13%',
-      a11y: '6%',
+      perf: '+13%',
+      a11y: '+6%',
       bp: '-1%',
-      seo: '0%',
+      seo: '-',
       pwa: {
-        fnr: '0%',
-        ins: '0%',
-        po: '0%'
+        fnr: '-',
+        ins: '-',
+        po: '-'
       },
-      average: '2.57%'
+      average: '+2.57%'
     };
     expect(actual[0]).toEqual(PERC_OUTPUT[0]);
     ['perf', 'a11y', 'bp', 'seo', 'average'].forEach(key => {

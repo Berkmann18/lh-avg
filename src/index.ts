@@ -186,12 +186,20 @@ const average = (scoreStrings: string[], asPercentage = false, showDiff = false)
           // console.log(`key=${key}\n\tl=${parseFloat(results[idx][key] as string)}  r=${parseFloat(ref[key] as string)}`);
           results[idx][key] =
             parseFloat(results[idx][key] as string) - parseFloat(ref[key] as string);
-          results[idx][key] = `${Math.round((results[idx][key] as number) * 100) / 100}%`;
+          const better = results[idx][key] > 0;
+          const noChange = results[idx][key] === 0;
+          results[idx][key] = noChange
+            ? '-'
+            : `${Math.round((results[idx][key] as number) * 100) / 100}%`;
+          if (better) results[idx][key] = '+' + results[idx][key];
         });
         const pwa = results[idx].pwa as SubObj;
         ['fnr', 'ins', 'po'].forEach((key) => {
           pwa[key] = parseFloat(pwa[key] as string) - parseFloat(refPwa[key] as string);
-          pwa[key] = `${Math.round((pwa[key] as number) * 100) / 100}%`;
+          const better = pwa[key] > 0;
+          const noChange = pwa[key] === 0;
+          pwa[key] = noChange ? '-' : `${Math.round((pwa[key] as number) * 100) / 100}%`;
+          if (better) pwa[key] = '+' + pwa[key];
         });
       }
       return results;
