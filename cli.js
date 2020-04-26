@@ -19,7 +19,6 @@ program
   .option('-d, --diff', 'Shows the difference between the first row and subsequent ones')
   .action((scoreStrings) => {
     const results = avg(scoreStrings, program.percentage, program.diff);
-    /* eslint-disable security/detect-object-injection */
 
     /* eslint-disable indent */
     switch (program.format) {
