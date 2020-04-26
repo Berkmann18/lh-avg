@@ -18,11 +18,8 @@ program
   .option('-s, --split', 'Split the string by metric')
   .option('-d, --diff', 'Shows the difference between the first row and subsequent ones')
   .action((scoreStrings) => {
-    const results = avg(scoreStrings, program.percentage);
+    const results = avg(scoreStrings, program.percentage, program.diff);
     /* eslint-disable security/detect-object-injection */
-    if (program.diff) {
-      // TODO Fill it
-    }
 
     /* eslint-disable indent */
     switch (program.format) {
