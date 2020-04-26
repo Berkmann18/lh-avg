@@ -1,9 +1,4 @@
 <p align="center"><h1 align="center">
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-<a href="#contributors-">
-  <img src="https://img.shields.io/badge/all_contributors-0-orange.svg?style=flat-square" alt="All Contributors" />
-</a>
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
   lh-avg
 </h1>
 
@@ -11,11 +6,12 @@
   LightHouse Average calculator
 </p>
 
+![Node.js CI](https://github.com/Berkmann18/lh-avg/workflows/Node.js%20CI/badge.svg)
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
+
 <p align="center">
-  <a href="https://nodei.co/npm/lh-avg/"><img src="https://nodei.co/npm/lh-avg.png" alt="NPM"></a>
-
-  <a href="https://github.com/Berkmann18/lh-avg/actions?query=workflow%3A%22Node.js+CI%22"><img src="https://github.com/Berkmann18/lh-avg/workflows/Node.js%20CI/badge.svg" alt="Node.js CI"></a>
-
   <a href="https://www.npmjs.org/package/lh-avg"><img src="https://badgen.net/npm/license/lh-avg" alt="license"/></a>
   <a href="https://www.npmjs.org/package/lh-avg"><img src="https://badgen.net/npm/dt/lh-avg" alt="downloads"/></a>
   <a href="https://codecov.io/gh/berkmann18/lh-avg"><img src="https://badgen.net/codecov/c/github/berkmann18/lh-avg" alt="codecov"/></a>
@@ -111,9 +107,14 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="http://maxcubing.wordpress.com"><img src="https://avatars0.githubusercontent.com/u/8260834?v=4" width="100px;" alt=""/><br /><sub><b>Maximilian Berkmann</b></sub></a><br /><a href="https://github.com/Berkmann18/lh-avg/commits?author=Berkmann18" title="Code">💻</a> <a href="https://github.com/Berkmann18/lh-avg/commits?author=Berkmann18" title="Documentation">📖</a> <a href="#example-Berkmann18" title="Examples">💡</a> <a href="#ideas-Berkmann18" title="Ideas, Planning, & Feedback">🤔</a> <a href="#infra-Berkmann18" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#maintenance-Berkmann18" title="Maintenance">🚧</a> <a href="#platform-Berkmann18" title="Packaging/porting to new platform">📦</a> <a href="https://github.com/Berkmann18/lh-avg/commits?author=Berkmann18" title="Tests">⚠️</a></td>
+  </tr>
+</table>
+
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
-
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
