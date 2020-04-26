@@ -1,3 +1,4 @@
+// eslint-disable-next-line node/no-missing-import
 import split from './split';
 
 /**
@@ -102,8 +103,10 @@ const avg = (scoreStr: string, asPercentage = false): Result => {
 /**
  * Lighthouse average scores calculator.
  * @param {string[]} scoreStrings List of Lighthouse score strings of the form ('num / num / num / num / (num, num, num)')
- * @param {boolean} [asPercentage=false] Return percentages (_as strings_) instead of numbers
- * @param {boolean} [showDiff=false] Show the difference between the first row and the subsequent ones.
+ * @param {object} [opts={}] Options.
+ * @param {boolean} [opts.asPercentage=false] Return percentages (_as strings_) instead of numbers
+ * @param {boolean} [opts.showDiff=false] Show the difference between the first row and the subsequent ones.
+ * @param {string[]} [opts.names=[]] List of names to add to each respective results.
  * @returns {Result[]} Results with the individual scores for each metrics.
  * @example <caption>Spaced</caption>
  *
@@ -174,8 +177,18 @@ const avg = (scoreStr: string, asPercentage = false): Result => {
  *
  * For more ways to input scores, please see the unit tests in \_\_tests\_\_/
  */
-const average = (scoreStrings: string[], asPercentage = false, showDiff = false): Result[] => {
+const average = (
+  scoreStrings: string[],
+  { asPercentage = false, showDiff = false, names = [] } = {}
+): Result[] => {
   const results: Result[] = scoreStrings.map((str) => avg(str, asPercentage));
+  if (names.length) {
+    /* eslint-disable security/detect-object-injection */
+    results.forEach((res, idx) => {
+      res.name = names[idx];
+    });
+  }
+
   if (showDiff) {
     const ref = results[0];
     const refPwa = ref.pwa as SubObj;
