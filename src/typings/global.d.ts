@@ -14,3 +14,12 @@ interface Result {
     average: NumLike;
     [key: string]: ResultKey;
 }
+interface LhReGroup {
+    perf: string;
+    a11y: string;
+    bp: string;
+    seo: string;
+    fnr: string;
+    ins: string;
+    po: string;
+  }

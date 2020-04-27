@@ -76,7 +76,6 @@ const percentagify = (result: Result): Result => {
  * @private
  */
 const safeFractionEval = (fraction: string): number => {
-  // return fraction.split('/').map(parseFloat).reduce((acc, val) => acc / val);
   const [num, denum] = fraction.split('/');
   return parseInt(num) / parseInt(denum);
 };
@@ -85,24 +84,18 @@ const perc2float = (percentages: string[], denominator = 100): number[] => {
   return percentages.map((perc) => parseFloat(perc) / denominator);
 };
 
+const pwaScores = (output: LhReGroup, shorthandForm: boolean): number[] => {
+  if (shorthandForm) {
+    return [parseFloat(output.fnr) / 3, parseFloat(output.ins) / 3, parseFloat(output.po) / 7];
+  }
+  return [output.fnr, output.ins, output.po].map(safeFractionEval);
+};
+
 const parseScoreString = (scoreStr: string): number[] => {
   const { output, shorthandForm } = split(scoreStr);
-
   const result = perc2float([output.perf, output.a11y, output.bp, output.seo]);
-  let fnr = null;
-  let ins = null;
-  let po = null;
-
-  if (shorthandForm) {
-    fnr = parseFloat(output.fnr) / 3;
-    ins = parseFloat(output.ins) / 3;
-    po = parseFloat(output.po) / 7;
-  } else {
-    fnr = safeFractionEval(output.fnr);
-    ins = safeFractionEval(output.ins);
-    po = safeFractionEval(output.po);
-  }
-  return result.concat(fnr, ins, po);
+  const pwa = pwaScores(output, shorthandForm);
+  return result.concat(pwa);
 };
 
 export { processDifference, percentagify, parseScoreString };
