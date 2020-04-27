@@ -51,6 +51,7 @@ Options:
   -f, --format <format>  Return the result(s) in a specific format (json, csv, md, html), default: text
   -s, --split            Split the string by metric
   -d, --diff             Shows the difference between the first row and subsequent ones
+  -n, --names <names>    Add names to each results
   -h, --help             display help for command
 ```
 
