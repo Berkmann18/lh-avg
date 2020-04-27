@@ -41,5 +41,6 @@
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules/**"],
+  "filesGlob": ["src/typings/*.ts"],
   "compileOnSave": true
 }
