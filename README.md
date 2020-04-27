@@ -82,7 +82,7 @@ console.log(average(lightHouseScores));
   average: 0.6157823129251702
 } */
 
-console.log(average(lightHouseScores, true));
+console.log(average(lightHouseScores, { asPercentage: true }));
 /* {
   perf: '14%',
   a11y: '100%',
