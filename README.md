@@ -6,6 +6,8 @@
   LightHouse Average calculator
 </p>
 
+[![NPM](https://nodei.co/npm/lh-avg.png)](https://nodei.co/npm/lh-avg/)
+
 ![Node.js CI](https://github.com/Berkmann18/lh-avg/workflows/Node.js%20CI/badge.svg)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg)](#contributors-)
