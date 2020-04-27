@@ -126,7 +126,7 @@ const avg = (scoreStr: string, asPercentage = false): Result => {
  * @example <caption>Percentages</caption>
  *
  * ```js
- * average(['14 / 100 / 98 / 100 / (1, 0, 6)'], true);
+ * average(['14 / 100 / 98 / 100 / (1, 0, 6)'], { asPercentage: true });
  * /* Returns:
  * [{
  *   perf: '14%',
@@ -155,7 +155,7 @@ const avg = (scoreStr: string, asPercentage = false): Result => {
  * @example <caption>Difference</caption>
  *
  * ```js
- * average(['14 / 100 / 98 / 100 / (1, 0, 6)', '28 / 100 / 97 / 100 / (1, 2, 6)'], false, true);
+ * average(['14 / 100 / 98 / 100 / (1, 0, 6)', '28 / 100 / 97 / 100 / (1, 2, 6)'], { showDiff: true });
  * /* Returns:
  * [{
  *   perf: 0.14,
