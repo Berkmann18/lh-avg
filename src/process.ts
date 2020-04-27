@@ -52,9 +52,7 @@ const processDifference = (
   return results;
 };
 
-/**
- * @private
- */
+/** @private */
 const perc = (num: number): string => `${Math.round(num * 10000) / 100}%`;
 
 const percentagify = (result: Result): Result => {
@@ -72,9 +70,7 @@ const percentagify = (result: Result): Result => {
   };
 };
 
-/**
- * @private
- */
+/** @private */
 const safeFractionEval = (fraction: string): number => {
   const [num, denum] = fraction.split('/');
   return parseInt(num) / parseInt(denum);
