@@ -227,13 +227,7 @@
   "release": {
     "branch": "master",
     "analyzeCommits": {
-      "preset": "angular",
-      "releaseRules": [
-        {
-          "type": "refactor",
-          "release": "patch"
-        }
-      ]
+      "preset": "angular"
     }
   },
   "plugins": [
