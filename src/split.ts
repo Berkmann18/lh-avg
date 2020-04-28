@@ -1,13 +1,4 @@
-interface LhReGroup {
-  perf: string;
-  a11y: string;
-  bp: string;
-  seo: string;
-  fnr: string;
-  ins: string;
-  po: string;
-}
-
+/** @protected */
 const split = (scoreStr: string): { output: LhReGroup; shorthandForm: boolean } => {
   /* eslint-disable security/detect-unsafe-regex */
   const exp = /(?<perf>\d+)\s*\/\s*(?<a11y>\d+)\s*\/\s*(?<bp>\d+)\s*\/\s*(?<seo>\d+)\s*\/\s*\((?<fnr>\d+)(,|\/)\s*(?<ins>\d+)(,|\/)\s*(?<po>\d+)\)/g.exec(

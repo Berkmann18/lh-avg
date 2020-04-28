@@ -125,16 +125,25 @@ program
         break;
       default:
         if (program.split) {
-          console.log('Perf / A11y / BP / SEO / PWA: Average');
+          console.log(`${program.names ? 'Name: ' : ''}Perf / A11y / BP / SEO / PWA => Average`);
           for (const score of results) {
-            const out = Object.values(score);
-            out[4] = `(${Object.values(out[4]).join(', ')})`;
-            console.log(out.join(' / ').replace(') /', '):'));
+            let out = Object.values(score);
+            if (program.names) {
+              out = out.slice(0, -1);
+              out[4] = `(${Object.values(out[4]).join(', ')})`;
+              console.log(
+                program.name ? score.name + ':' : '',
+                out.join(' / ').replace(') /', ') =>')
+              );
+            } else {
+              out[4] = `(${Object.values(out[4]).join(', ')})`;
+              console.log(out.join(' / ').replace(') /', ') =>'));
+            }
           }
         } else {
           console.log('Input: Average');
           for (const idx in results) {
-            console.log(`"${scoreStrings[idx]}": ${results[idx].average}`);
+            console.log(`"${scoreStrings[idx]}" => ${results[idx].average}`);
           }
         }
     }

@@ -1,0 +1,8 @@
+{
+  "inputFiles": ["./src/index.ts", "./src/split.ts", "./src/process.ts"],
+  "out": "doc/",
+  "theme": "default",
+  "excludeNotExported": false,
+  "excludeExternals": true,
+  "listInvalidSymbolLinks": true
+}
