@@ -22,7 +22,7 @@
     "semantic-release": "semantic-release",
     "lint:lockfile": "lockfile-lint --path package-lock.json --type npm --validate-https --allowed-hosts npm yarn",
     "lint:md": "remark . .github",
-    "doc": "typedoc --out doc src",
+    "doc": "typedoc",
     "prepare": "snyk protect",
     "build": "npm run build:main && npm run build:module",
     "build:main": "tsc -p tsconfig.json",

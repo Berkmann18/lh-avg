@@ -1,6 +1,7 @@
 // eslint-disable-next-line node/no-missing-import
 import split from './split';
 
+/** @private */
 const signsResult = (result: number): string => {
   let output: string = result.toString();
   output = result === 0 ? '-' : `${Math.round(result * 100) / 100}%`;
@@ -8,9 +9,12 @@ const signsResult = (result: number): string => {
   return output;
 };
 
+/** @private */
 const PROCESSABLE_FIELDS = ['perf', 'a11y', 'bp', 'seo', 'average'];
+/** @private */
 const PWA_FIELDS = ['fnr', 'ins', 'po'];
 
+/** @private */
 const processResultAsDiff = (results: Result[], idx: number): void => {
   /* eslint-disable security/detect-object-injection */
   PROCESSABLE_FIELDS.forEach((key) => {
@@ -26,6 +30,7 @@ const processResultAsDiff = (results: Result[], idx: number): void => {
   });
 };
 
+/** @protected */
 const processDifference = (
   scoreStrings: string[],
   results: Result[],
@@ -55,6 +60,7 @@ const processDifference = (
 /** @private */
 const perc = (num: number): string => `${Math.round(num * 10000) / 100}%`;
 
+/** @protected */
 const percentagify = (result: Result): Result => {
   return {
     perf: perc(result.perf as number),
@@ -76,10 +82,12 @@ const safeFractionEval = (fraction: string): number => {
   return parseInt(num) / parseInt(denum);
 };
 
+/** @private */
 const perc2float = (percentages: string[], denominator = 100): number[] => {
   return percentages.map((perc) => parseFloat(perc) / denominator);
 };
 
+/** @private */
 const pwaScores = (output: LhReGroup, shorthandForm: boolean): number[] => {
   if (shorthandForm) {
     return [parseFloat(output.fnr) / 3, parseFloat(output.ins) / 3, parseFloat(output.po) / 7];
@@ -87,6 +95,7 @@ const pwaScores = (output: LhReGroup, shorthandForm: boolean): number[] => {
   return [output.fnr, output.ins, output.po].map(safeFractionEval);
 };
 
+/** @protected */
 const parseScoreString = (scoreStr: string): number[] => {
   const { output, shorthandForm } = split(scoreStr);
   const result = perc2float([output.perf, output.a11y, output.bp, output.seo]);

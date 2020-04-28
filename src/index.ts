@@ -1,9 +1,7 @@
 // eslint-disable-next-line node/no-missing-import
 import { parseScoreString, percentagify, processDifference } from './process';
 
-/**
- * @private
- */
+/** @private */
 const mean = (nums: number[]): number => nums.reduce((acc, val) => acc + val, 0) / nums.length;
 
 /**
