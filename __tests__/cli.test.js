@@ -1,6 +1,6 @@
 const path = require('path');
 const cmd = require('./cmd');
-const { INPUT, AVG, PERC, JSON, CSV, MD, HTML } = require('./fixtures');
+const { INPUT, AVG, PERC, JSON, CSV, MD, HTML, DEFAULT } = require('./fixtures');
 
 /* test('normal', async (done) => {
   const response = await cmd.execute('./cli', [INPUT]);
@@ -13,13 +13,13 @@ describe('Singular flag', () => {
 
   it('should default to text', async () => {
     const response = await cliProcess.execute([INPUT]);
-    expect(response).toEqual(`Input: Average\n"${INPUT}" => ${AVG}\n`);
+    expect(response).toEqual(DEFAULT.normal);
     // done();
   });
 
   it('can show percentages', async () => {
     const response = await cliProcess.execute([INPUT, '-p']);
-    expect(response).toEqual(`Input: Average\n"${INPUT}" => ${PERC}\n`);
+    expect(response).toEqual(DEFAULT.perc);
   });
 
   it('can print in JSON', async () => {
@@ -41,6 +41,11 @@ describe('Singular flag', () => {
     const response = await cliProcess.execute([INPUT, '-f', 'html']);
     expect(response).toEqual(HTML.normal);
   });
+
+  it('can show split data', async () => {
+    const response = await cliProcess.execute([INPUT, '-s']);
+    expect(response).toEqual(DEFAULT.split);
+  });
 });
 
 // TODO -s
@@ -48,8 +53,6 @@ describe('Singular flag', () => {
 // TODO -d
 
 // TODO -n
-
-// TODO -f json, csv, md, html
 
 // TODO -ps
 
