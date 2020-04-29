@@ -4,6 +4,7 @@
  * Source: https://gist.github.com/zorrodg/c349cf54a3f6d0a9ba62e0f4066f31cb
  *  MIT License: Copyright © 2019 Andrés Zorro
  */
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 
 const { existsSync } = require('fs');
 const { constants } = require('os');

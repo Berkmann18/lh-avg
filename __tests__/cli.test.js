@@ -1,8 +1,6 @@
-const cmd = require('./cmd');
-// const cli = require('../cli');
 const path = require('path');
-
-const INPUT = '13 / 94 / 86 / 75 / (0/3, 0/3, 2/7)';
+const cmd = require('./cmd');
+const { INPUT, AVG, PERC, JSON, CSV, MD, HTML } = require('./fixtures');
 
 /* test('normal', async (done) => {
   const response = await cmd.execute('./cli', [INPUT]);
@@ -13,19 +11,37 @@ describe('Singular flag', () => {
   const cliPath = path.join(__dirname, '../cli.js');
   const cliProcess = cmd.create(cliPath, '.');
 
-  it('should default to text', async (done) => {
+  it('should default to text', async () => {
     const response = await cliProcess.execute([INPUT]);
-    expect(response).toEqual(`Input: Average\n"${INPUT}" => 0.423673469387755\n`);
-    done();
+    expect(response).toEqual(`Input: Average\n"${INPUT}" => ${AVG}\n`);
+    // done();
+  });
+
+  it('can show percentages', async () => {
+    const response = await cliProcess.execute([INPUT, '-p']);
+    expect(response).toEqual(`Input: Average\n"${INPUT}" => ${PERC}\n`);
+  });
+
+  it('can print in JSON', async () => {
+    const response = await cliProcess.execute([INPUT, '-f', 'json']);
+    expect(response).toEqual(JSON.normal);
+  });
+
+  it('can print in CSV', async () => {
+    const response = await cliProcess.execute([INPUT, '-f', 'csv']);
+    expect(response).toEqual(CSV.normal);
+  });
+
+  it('can print in MD', async () => {
+    const response = await cliProcess.execute([INPUT, '-f', 'md']);
+    expect(response).toEqual(MD.normal);
+  });
+
+  it('can print in HTML', async () => {
+    const response = await cliProcess.execute([INPUT, '-f', 'html']);
+    expect(response).toEqual(HTML.normal);
   });
 });
-
-// TODO -p
-/* test('-p', async (done) => {
-  const response = await cmd.execute('../cli', [INPUT, '-p']);
-  expect(response).toEqual('42.37%');
-  done();
-}); */
 
 // TODO -s
 
