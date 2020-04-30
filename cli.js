@@ -1,11 +1,10 @@
 #!/usr/bin/env node
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
-
+/* eslint-disable node/no-missing-require */
 const { program } = require('commander');
 const { cosmiconfig } = require('cosmiconfig');
 const pkg = require('./package.json');
 const { generate } = require('./build/main/process');
-/* eslint-disable node/no-missing-require */
 
 const explorer = cosmiconfig(pkg.name);
 
@@ -23,11 +22,14 @@ const findConfig = (configFromCli) => {
 
   return new Promise((resolve, reject) => {
     if (configFromCli) {
-      explorer.load(configFromCli).then((result) => {
-        if (result && !result.isEmpty) {
-          resolve({ ...options, ...result.config });
-        } else reject(result);
-      });
+      explorer
+        .load(configFromCli)
+        .then((result) => {
+          if (result && !result.isEmpty) {
+            resolve({ ...options, ...result.config });
+          } else reject(result);
+        })
+        .catch((err) => reject(err));
     } else {
       explorer
         .search()
