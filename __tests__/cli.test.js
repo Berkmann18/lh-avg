@@ -52,13 +52,12 @@ describe('Singular flag', () => {
   });
 });
 
-describe('Double flags', () => {
+describe('Text', () => {
   it('can show split % data', async () => {
     const response = await cliProcess.execute([INPUT, '-sp']);
     expect(response).toEqual(DEFAULT.splitPerc);
   });
 
-  // TODO To Implement
   it('can show split named data', async () => {
     const response = await cliProcess.execute([INPUT, '-sn', 'a']);
     expect(response).toEqual(DEFAULT.splitNamed);
@@ -67,6 +66,11 @@ describe('Double flags', () => {
   it('can show split diff data', async () => {
     const response = await cliProcess.execute([...TWO_INPUTS, '-sd']);
     expect(response).toEqual(DEFAULT.splitDiff);
+  });
+
+  it('can show split diff % data', async () => {
+    const response = await cliProcess.execute([...TWO_INPUTS, '-psd']);
+    expect(response).toEqual(DEFAULT.splitDiffPerc);
   });
 });
 
@@ -105,6 +109,11 @@ describe('CSV', () => {
     const response = await cliProcess.execute([INPUT, '-sf', 'csv', '-n', 'a']);
     expect(response).toEqual(CSV.splitNamed);
   });
+
+  it('can show split diff % data', async () => {
+    const response = await cliProcess.execute([...TWO_INPUTS, '-psdf', 'csv']);
+    expect(response).toEqual(CSV.splitDiffPerc);
+  });
 });
 
 describe('JSON', () => {
@@ -142,6 +151,11 @@ describe('JSON', () => {
     const response = await cliProcess.execute([INPUT, '-sn', 'a', '-f', 'json']);
     expect(response).toEqual(JSON.named);
   });
+
+  it('can show split diff % data', async () => {
+    const response = await cliProcess.execute([...TWO_INPUTS, '-psdf', 'json']);
+    expect(response).toEqual(JSON.diffPerc);
+  });
 });
 
 describe('MD', () => {
@@ -159,6 +173,7 @@ describe('MD', () => {
     const response = await cliProcess.execute([INPUT, '-spf', 'md']);
     expect(response).toEqual(MD.splitPerc);
   });
+
   it('can show diff data', async () => {
     const response = await cliProcess.execute([...TWO_INPUTS, '-df', 'md']);
     expect(response).toEqual(MD.diff);
@@ -178,6 +193,11 @@ describe('MD', () => {
     const response = await cliProcess.execute([INPUT, '-sn', 'a', '-f', 'md']);
     expect(response).toEqual(MD.splitNamed);
   });
+
+  it('can show split diff % data', async () => {
+    const response = await cliProcess.execute([...TWO_INPUTS, '-psdf', 'md']);
+    expect(response).toEqual(MD.splitDiffPerc);
+  });
 });
 
 describe('HTML', () => {
@@ -195,6 +215,7 @@ describe('HTML', () => {
     const response = await cliProcess.execute([INPUT, '-spf', 'html']);
     expect(response).toEqual(HTML.splitPerc);
   });
+
   it('can show diff data', async () => {
     const response = await cliProcess.execute([...TWO_INPUTS, '-df', 'html']);
     expect(response).toEqual(HTML.diff);
@@ -214,9 +235,12 @@ describe('HTML', () => {
     const response = await cliProcess.execute([INPUT, '-sn', 'a', '-f', 'html']);
     expect(response).toEqual(HTML.splitNamed);
   });
-});
 
-// TODO -psd
+  it('can show split diff % data', async () => {
+    const response = await cliProcess.execute([...TWO_INPUTS, '-psdf', 'html']);
+    expect(response).toEqual(HTML.splitDiffPerc);
+  });
+});
 
 // Errors
 test('Error', async () => {
