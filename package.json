@@ -46,7 +46,8 @@
     "url": "https://github.com/Berkmann18/lh-avg.git"
   },
   "dependencies": {
-    "commander": "^5.0.0"
+    "commander": "^5.0.0",
+    "cosmiconfig": "^6.0.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",

@@ -111,7 +111,20 @@ Options:
   -s, <span class="hljs-comment">--split            Split the string by metric</span>
   -d, <span class="hljs-comment">--diff             Shows the difference between the first row and subsequent ones</span>
   -n, <span class="hljs-comment">--names &lt;names&gt;    Add names to each results</span>
+  -c, <span class="hljs-comment">--config &lt;config&gt;  Use the configuration from the specified path</span>
   -h, <span class="hljs-comment">--help             display help for command</span></span></code></pre>
+					<a href="#configuration" id="configuration" style="color: inherit; text-decoration: none;">
+						<h3>Configuration</h3>
+					</a>
+					<p>The CLI will look for configuration files following the <code>cosmiconfig</code> approach:</p>
+					<ol>
+						<li><code>lh-avg</code> property in <code>package.json</code></li>
+						<li><code>.lh-avgrc</code> (using JSON or YAML syntax)</li>
+						<li><code>.lh-avgrc.json</code></li>
+						<li><code>.lh-avgrc.yaml</code>/<code>.lh-avgrc.yml</code>/<code>.lh-avgrc.js</code></li>
+						<li><code>lh-avg.config.js</code></li>
+					</ol>
+					<p>It will first read the configuration (if it finds one) <em>then</em> look at the CLI options (which overrides the relevant configuration options).</p>
 					<a href="#es-module" id="es-module" style="color: inherit; text-decoration: none;">
 						<h2>ES Module</h2>
 					</a>
@@ -185,6 +198,9 @@ Options:
 					</li>
 					<li class=" tsd-kind-module">
 						<a href="modules/_split_.html">&quot;split&quot;</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/_transform_.html">&quot;transform&quot;</a>
 					</li>
 				</ul>
 			</nav>

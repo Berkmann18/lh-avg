@@ -54,8 +54,19 @@ Options:
   -s, --split            Split the string by metric
   -d, --diff             Shows the difference between the first row and subsequent ones
   -n, --names <names>    Add names to each results
+  -c, --config <config>  Use the configuration from the specified path
   -h, --help             display help for command
 ```
+
+### Configuration
+The CLI will look for configuration files following the `cosmiconfig` approach:
+1. `lh-avg` property in `package.json`
+2. `.lh-avgrc` (using JSON or YAML syntax)
+3. `.lh-avgrc.json`
+4. `.lh-avgrc.yaml`/`.lh-avgrc.yml`/`.lh-avgrc.js`
+5. `lh-avg.config.js`
+
+It will first read the configuration (if it finds one) _then_ look at the CLI options (which overrides the relevant configuration options).
 
 ## ES Module
 
