@@ -41,12 +41,15 @@ describe('Singular flag', () => {
     expect(response).toEqual(DEFAULT.split);
   });
 
-  // it('can show diff data', async () => {
-  //   const response = await cliProcess.execute([...TWO_INPUTS, '-d']);
-  //   expect(response).toEqual(DEFAULT.diff);
-  // });
+  it('can show diff data', async () => {
+    const response = await cliProcess.execute([...TWO_INPUTS, '-d']);
+    expect(response).toEqual(DEFAULT.diff);
+  });
 
-  // TODO -n
+  it('can show named data', async () => {
+    const response = await cliProcess.execute([INPUT, '-n', 'a']);
+    expect(response).toEqual(DEFAULT.named);
+  });
 });
 
 describe('Double flags', () => {
@@ -55,15 +58,16 @@ describe('Double flags', () => {
     expect(response).toEqual(DEFAULT.splitPerc);
   });
 
-  // it('can show split named data', async () => {
-  //   const response = await cliProcess.execute([INPUT, '-sn', 'a']);
-  //   expect(response).toEqual(DEFAULT.splitNamed);
-  // });
+  // TODO To Implement
+  it('can show split named data', async () => {
+    const response = await cliProcess.execute([INPUT, '-sn', 'a']);
+    expect(response).toEqual(DEFAULT.splitNamed);
+  });
 
-  // it('can show split diff data', async () => {
-  //   const response = await cliProcess.execute([INPUT, '-sd']);
-  //   expect(response).toEqual(DEFAULT.splitDiff);
-  // });
+  it('can show split diff data', async () => {
+    const response = await cliProcess.execute([...TWO_INPUTS, '-sd']);
+    expect(response).toEqual(DEFAULT.splitDiff);
+  });
 });
 
 describe('CSV', () => {
@@ -77,14 +81,29 @@ describe('CSV', () => {
     expect(response).toEqual(CSV.split);
   });
 
+  it('can show split % data', async () => {
+    const response = await cliProcess.execute([INPUT, '-spf', 'csv']);
+    expect(response).toEqual(CSV.splitPerc);
+  });
+
   it('can show diff data', async () => {
     const response = await cliProcess.execute([...TWO_INPUTS, '-df', 'csv']);
     expect(response).toEqual(CSV.diff);
   });
 
+  it('can show split diff data', async () => {
+    const response = await cliProcess.execute([...TWO_INPUTS, '-sdf', 'csv']);
+    expect(response).toEqual(CSV.splitDiff);
+  });
+
   it('can show named data', async () => {
     const response = await cliProcess.execute([INPUT, '-n', 'a', '-f', 'csv']);
     expect(response).toEqual(CSV.named);
+  });
+
+  it('can show split named data', async () => {
+    const response = await cliProcess.execute([INPUT, '-sf', 'csv', '-n', 'a']);
+    expect(response).toEqual(CSV.splitNamed);
   });
 });
 
@@ -98,20 +117,104 @@ describe('JSON', () => {
     const response = await cliProcess.execute([INPUT, '-sf', 'json']);
     expect(response).toEqual(JSON.normal);
   });
-  // it('can show diff data', async () => {
-  //   const response = await cliProcess.execute([...TWO_INPUTS, '-df', 'json']);
-  //   expect(response).toEqual(JSON.diff);
-  // });
+
+  it('can show split % data', async () => {
+    const response = await cliProcess.execute([INPUT, '-spf', 'json']);
+    expect(response).toEqual(JSON.perc);
+  });
+
+  it('can show diff data', async () => {
+    const response = await cliProcess.execute([...TWO_INPUTS, '-df', 'json']);
+    expect(response).toEqual(JSON.diff);
+  });
+
+  it('can show split diff data', async () => {
+    const response = await cliProcess.execute([...TWO_INPUTS, '-sdf', 'json']);
+    expect(response).toEqual(JSON.diff);
+  });
 
   it('can show named data', async () => {
     const response = await cliProcess.execute([INPUT, '-n', 'a', '-f', 'json']);
     expect(response).toEqual(JSON.named);
   });
+
+  it('can show split named data', async () => {
+    const response = await cliProcess.execute([INPUT, '-sn', 'a', '-f', 'json']);
+    expect(response).toEqual(JSON.named);
+  });
 });
 
-// TODO MD ...
+describe('MD', () => {
+  it('can show percentages', async () => {
+    const response = await cliProcess.execute([INPUT, '-pf', 'md']);
+    expect(response).toEqual(MD.perc);
+  });
 
-// TODO HTML ...
+  it('can show split data', async () => {
+    const response = await cliProcess.execute([INPUT, '-sf', 'md']);
+    expect(response).toEqual(MD.split);
+  });
+
+  it('can show split % data', async () => {
+    const response = await cliProcess.execute([INPUT, '-spf', 'md']);
+    expect(response).toEqual(MD.splitPerc);
+  });
+  it('can show diff data', async () => {
+    const response = await cliProcess.execute([...TWO_INPUTS, '-df', 'md']);
+    expect(response).toEqual(MD.diff);
+  });
+
+  it('can show split diff data', async () => {
+    const response = await cliProcess.execute([...TWO_INPUTS, '-sdf', 'md']);
+    expect(response).toEqual(MD.splitDiff);
+  });
+
+  it('can show named data', async () => {
+    const response = await cliProcess.execute([INPUT, '-n', 'a', '-f', 'md']);
+    expect(response).toEqual(MD.named);
+  });
+
+  it('can show split named data', async () => {
+    const response = await cliProcess.execute([INPUT, '-sn', 'a', '-f', 'md']);
+    expect(response).toEqual(MD.splitNamed);
+  });
+});
+
+describe('HTML', () => {
+  it('can show percentages', async () => {
+    const response = await cliProcess.execute([INPUT, '-pf', 'html']);
+    expect(response).toEqual(HTML.perc);
+  });
+
+  it('can show split data', async () => {
+    const response = await cliProcess.execute([INPUT, '-sf', 'html']);
+    expect(response).toEqual(HTML.split);
+  });
+
+  it('can show split % data', async () => {
+    const response = await cliProcess.execute([INPUT, '-spf', 'html']);
+    expect(response).toEqual(HTML.splitPerc);
+  });
+  it('can show diff data', async () => {
+    const response = await cliProcess.execute([...TWO_INPUTS, '-df', 'html']);
+    expect(response).toEqual(HTML.diff);
+  });
+
+  it('can show split diff data', async () => {
+    const response = await cliProcess.execute([...TWO_INPUTS, '-sdf', 'html']);
+    expect(response).toEqual(HTML.splitDiff);
+  });
+
+  it('can show named data', async () => {
+    const response = await cliProcess.execute([INPUT, '-n', 'a', '-f', 'html']);
+    expect(response).toEqual(HTML.named);
+  });
+
+  it('can show split named data', async () => {
+    const response = await cliProcess.execute([INPUT, '-sn', 'a', '-f', 'html']);
+    expect(response).toEqual(HTML.splitNamed);
+  });
+});
 
 // TODO -psd
 
