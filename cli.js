@@ -64,7 +64,6 @@ program
   .action(async (scoreStrings) => {
     let options = {};
     try {
-      // options = await (program.config ? (await explorer.load(program.config)).config : findConfig(progam.config));
       options = await findConfig(program.config);
     } catch (err) {
       if (!scoreStrings.length) throw new Error('No input found!');
