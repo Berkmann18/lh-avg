@@ -54,6 +54,7 @@ Options:
   -s, --split            Split the string by metric
   -d, --diff             Shows the difference between the first row and subsequent ones
   -n, --names <names>    Add names to each results
+  -c, --config <config>  Use the configuration from the specified path
   -h, --help             display help for command
 ```
 
