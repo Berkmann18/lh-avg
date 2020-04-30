@@ -1,6 +1,6 @@
 const path = require('path');
 const cmd = require('./cmd');
-const { INPUT, TWO_INPUTS, JSON, CSV, MD, HTML, DEFAULT } = require('./fixtures');
+const { INPUT, JSON, CSV, MD, HTML, DEFAULT } = require('./fixtures');
 
 /* test('normal', async (done) => {
   const response = await cmd.execute('./cli', [INPUT]);
