@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 
 const { program } = require('commander');
 const { cosmiconfig } = require('cosmiconfig');
@@ -16,8 +17,7 @@ const {
 const explorer = cosmiconfig(pkg.name);
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-const findConfig = () => {
+const findConfig = (configFromCli) => {
   const options = {
     percentage: false,
     format: 'text',
@@ -26,15 +26,24 @@ const findConfig = () => {
     names: [],
     inputs: []
   };
+
   return new Promise((resolve, reject) => {
-    explorer
-      .search()
-      .then((result) => {
-        if (!result.isEmpty) {
+    if (configFromCli) {
+      explorer.load(program.config).then((result) => {
+        if (result && !result.isEmpty) {
           resolve({ ...options, ...result.config });
-        }
-      })
-      .catch((err) => reject(err));
+        } else reject(result);
+      });
+    } else {
+      explorer
+        .search()
+        .then((result) => {
+          if (result && !result.isEmpty) {
+            resolve({ ...options, ...result.config });
+          } else reject(result); // Will be null when running `./cli.js`
+        })
+        .catch((err) => reject(err));
+    }
   });
 };
 
@@ -51,8 +60,15 @@ program
   .option('-s, --split', 'Split the string by metric')
   .option('-d, --diff', 'Shows the difference between the first row and subsequent ones')
   .option('-n, --names <names>', 'Add names to each results', (value) => value.split(','))
+  .option('-c, --config <config>', 'Use the configuration from the specified path')
   .action(async (scoreStrings) => {
-    const options = await findConfig();
+    let options = {};
+    try {
+      // options = await (program.config ? (await explorer.load(program.config)).config : findConfig(progam.config));
+      options = await findConfig(program.config);
+    } catch (err) {
+      if (!scoreStrings.length) throw new Error('No input found!');
+    }
     ['percentage', 'format', 'split', 'diff', 'names'].forEach((option) => {
       // eslint-disable-next-line security/detect-object-injection
       if (program[option]) options[option] = program[option];
