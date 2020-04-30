@@ -49,6 +49,7 @@ Options:
   -d, --diff             Shows the difference between the first row and subsequent ones
   -n, --names <names>    Add names to each results
   -c, --config <config>  Use the configuration from the specified path
+  -m, --multi <multi>    Show multiple results (EXPERIMENTAL, please the config option for this)
   -h, --help             display help for command
 ```
 
