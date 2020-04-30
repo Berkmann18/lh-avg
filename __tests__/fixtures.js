@@ -100,7 +100,6 @@ const JSON_NAMED_OUTPUT = `[
 ]
 `;
 
-
 const CSV_OUTPUT = `input,average
 "${INPUT}",${AVG}
 `;

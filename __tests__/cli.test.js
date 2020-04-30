@@ -98,7 +98,6 @@ describe('JSON', () => {
     const response = await cliProcess.execute([INPUT, '-sf', 'json']);
     expect(response).toEqual(JSON.normal);
   });
-
   // it('can show diff data', async () => {
   //   const response = await cliProcess.execute([...TWO_INPUTS, '-df', 'json']);
   //   expect(response).toEqual(JSON.diff);
