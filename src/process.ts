@@ -1,10 +1,12 @@
 // eslint-disable-next-line node/no-missing-import
 import split from './split';
 
+const round = (num: number): number => Math.round(num * 100) / 100;
+
 /** @private */
 const signsResult = (result: number): string => {
   let output: string = result.toString();
-  output = result === 0 ? '-' : `${Math.round(result * 100) / 100}%`;
+  output = result === 0 ? '-' : `${round(result)}%`;
   if (result > 0) output = `+${output}`;
   return output;
 };
@@ -103,4 +105,14 @@ const parseScoreString = (scoreStr: string): number[] => {
   return result.concat(pwa);
 };
 
-export { processDifference, percentagify, parseScoreString };
+const scoreToString = (score: Result, rounding = false): string => {
+  return rounding
+    ? `${round(score.perf as number)} / ${round(score.a11y as number)} / ${round(
+        score.bp as number
+      )} / ${round(score.seo as number)} / (${round(score.pwa.fnr as number)}, ${round(
+        score.pwa.ins as number
+      )}, ${round(score.pwa.po as number)}) => ${round(score.average as number)}`
+    : `${score.perf} / ${score.a11y} / ${score.bp} / ${score.seo} / (${score.pwa.fnr}, ${score.pwa.ins}, ${score.pwa.po}) => ${score.average}`;
+};
+
+export { processDifference, percentagify, parseScoreString, scoreToString };
