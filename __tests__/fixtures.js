@@ -2,6 +2,7 @@ const AVG = 0.423673469387755;
 const PERC = '42.37%';
 const INPUT = '13 / 94 / 86 / 75 / (0/3, 0/3, 2/7)';
 const TWO_INPUTS = ['13 / 94 / 86 / 75 / (0, 0, 2)', '26 / 100 / 85 / 75 / (0, 0, 2)'];
+const NAMES = ['a', 'b'];
 
 const OUTPUT = [
   {
@@ -17,6 +18,19 @@ const OUTPUT = [
     average: AVG
   }
 ];
+const DIFF = {
+  perf: 0.13,
+  a11y: 0.06,
+  bp: -0.01,
+  seo: 0,
+  pwa: {
+    fnr: 0,
+    ins: 0,
+    po: 0
+  },
+  average: 0.025714285714285745
+};
+
 const JSON_OUTPUT = `[
   {
     perf: 0.13,
@@ -54,11 +68,36 @@ const JSON_PERC_OUTPUT = `[
 ]
 `;
 
-const CSV_OUTPUT = `input,average\n"${INPUT}",${AVG}\n`;
-const CSV_PERC_OUTPUT = `input,average\n"${INPUT}",${PERC}\n`;
+const JSON_SPLIT_OUTPUT = ``
 
-const MD_OUTPUT = `| Input | Average |\n|-------|---------|\n| ${INPUT} | ${AVG} |\n`
-const MD_PERC_OUTPUT = `| Input | Average |\n|-------|---------|\n| ${INPUT} | ${PERC} |\n`
+const CSV_OUTPUT = `input,average
+"${INPUT}",${AVG}
+`;
+const CSV_PERC_OUTPUT = `input,average
+"${INPUT}",${PERC}
+`;
+const CSV_SPLIT_OUTPUT = `perf,a11y,bp,seo,pwa,average
+0.13,0.94,0.86,0.75,0/0/${OUTPUT[0].pwa.po},${AVG}
+`;
+const CSV_SP_OUTPUT = `perf,a11y,bp,seo,pwa,average
+0.13,0.94,0.86,0.75,0/0/${PERC_OUTPUT[0].pwa.po},${PERC}
+`;
+const CSV_DIFF_OUTPUT = `input,average
+"${TWO_INPUTS[0]}",${AVG}
+"${TWO_INPUTS[1]}",${DIFF.average}
+`;
+const CSV_NAMED_OUTPUT = `name,input,average
+${NAMES[0]},"${INPUT}",${AVG}
+`;
+
+const MD_OUTPUT = `| Input | Average |
+|-------|---------|
+| ${INPUT} | ${AVG} |
+`
+const MD_PERC_OUTPUT = `| Input | Average |
+|-------|---------|
+| ${INPUT} | ${PERC} |
+`
 
 const HTML_OUTPUT = `<table>
   <tr>
@@ -87,23 +126,8 @@ const TEXT_SPLIT_OUTPUT = `Perf / A11y / BP / SEO / PWA => Average
 0.13 / 0.94 / 0.86 / 0.75 / (0, 0, ${OUTPUT[0].pwa.po}) => ${AVG}
 `;
 const TEXT_SP_OUTPUT = `Perf / A11y / BP / SEO / PWA => Average
-0.13 / 0.94 / 0.86 / 0.75 / (0, 0, ${OUTPUT[0].pwa.po}) => ${PERC}
+13% / 94% / 86% / 75% / (0%, 0%, ${PERC_OUTPUT[0].pwa.po}) => ${PERC}
 `;
-
-const NAMES = ['a', 'b'];
-
-/* const DIFF = {
-  perf: 0.13,
-  a11y: 0.06,
-  bp: -0.01,
-  seo: 0,
-  pwa: {
-    fnr: 0,
-    ins: 0,
-    po: 0
-  },
-  average: 0.02571428571428576
-}; */
 
 const TEXT_DIFF_OUTPUT = `Input: Average
 0.13 / 0.94 / 0.86 / 0.75 / (0, 0, 0.2857142857142857) => ${AVG}
@@ -123,21 +147,23 @@ module.exports = {
     perc: TEXT_PERC_OUTPUT,
     split: TEXT_SPLIT_OUTPUT,
     splitPerc: TEXT_SP_OUTPUT,
-    diff: TEXT_DIFF_OUTPUT
+    diff: TEXT_DIFF_OUTPUT,
+    named: null
   },
   JSON: {
     normal: JSON_OUTPUT,
     perc: JSON_PERC_OUTPUT,
-    split: null,
-    splitPerc: null,
-    diff: null
+    splitPerc: null, // JSON_SP_OUTPUT,
+    diff: null, // JSON_DIFF_OUTPUT,
+    named: null
   },
   CSV: {
     normal: CSV_OUTPUT,
     perc: CSV_PERC_OUTPUT,
-    split: null,
-    splitPerc: null,
-    diff: null
+    split: CSV_SPLIT_OUTPUT,
+    splitPerc: CSV_SP_OUTPUT,
+    diff: CSV_DIFF_OUTPUT,
+    named: CSV_NAMED_OUTPUT
   },
   MD: {
     normal: MD_OUTPUT,
