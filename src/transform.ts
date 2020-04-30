@@ -1,6 +1,10 @@
 // eslint-disable-next-line node/no-missing-import
 import { scoreToString } from './process';
 
+const jsonTransform = (results: Result[], cliOpts: CommanderOptions): void => {
+  console.dir(cliOpts.split ? Object.values(results) : results);
+};
+
 const csvTransform = (
   results: Result[],
   cliOpts: CommanderOptions,
@@ -58,7 +62,7 @@ const mdTransform = (
     console.log(`${name}| Input | Average |\n|-------|---------|`);
     for (const idx in results) {
       console.log(
-        `${results[idx].name ? '| ' + results[idx].name : ''}| ${scoreStrings[idx]} | ${
+        `${results[idx].name ? '| ' + results[idx].name + ' ' : ''}| ${scoreStrings[idx]} | ${
           results[idx].average
         } |`
       );
@@ -101,6 +105,7 @@ const htmlTransform = (
         }</td><td>${results[idx].average}</td>\n  </tr>`
       );
     }
+    console.log('</table>');
   }
 };
 
@@ -124,14 +129,19 @@ const textTransform = (
       }
     }
   } else {
-    console.log(`${name}Input: Average`);
+    console.log(`${name}Input => Average`);
     for (const idx in results) {
       if (cliOpts.diff) {
-        const str = scoreToString(results[idx], !cliOpts.percentage);
+        const str = scoreToString(results[idx]);
         console.log(str);
-      } else console.log(`"${scoreStrings[idx]}" => ${results[idx].average}`);
+      } else
+        console.log(
+          `${cliOpts.names ? results[idx].name + ': ' : ''}"${scoreStrings[idx]}" => ${
+            results[idx].average
+          }`
+        );
     }
   }
 };
 
-export { csvTransform, mdTransform, htmlTransform, textTransform };
+export { jsonTransform, csvTransform, mdTransform, htmlTransform, textTransform };

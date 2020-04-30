@@ -105,14 +105,15 @@ const parseScoreString = (scoreStr: string): number[] => {
   return result.concat(pwa);
 };
 
-const scoreToString = (score: Result, rounding = false): string => {
-  return rounding
-    ? `${round(score.perf as number)} / ${round(score.a11y as number)} / ${round(
+const scoreToString = (score: Result /*,  rounding = false */): string => {
+  /* return rounding
+    ? `"${round(score.perf as number)} / ${round(score.a11y as number)} / ${round(
         score.bp as number
-      )} / ${round(score.seo as number)} / (${round(score.pwa.fnr as number)}, ${round(
+    )} / ${round(score.seo as number)} / (${round(score.pwa.fnr as number)}, ${round(
         score.pwa.ins as number
-      )}, ${round(score.pwa.po as number)}) => ${round(score.average as number)}`
-    : `${score.perf} / ${score.a11y} / ${score.bp} / ${score.seo} / (${score.pwa.fnr}, ${score.pwa.ins}, ${score.pwa.po}) => ${score.average}`;
+    )}, ${round(score.pwa.po as number)})" => ${round(score.average as number)}`
+    : `"${score.perf} / ${score.a11y} / ${score.bp} / ${score.seo} / (${score.pwa.fnr}, ${score.pwa.ins}, ${score.pwa.po})" => ${score.average}`; */
+  return `"${score.perf} / ${score.a11y} / ${score.bp} / ${score.seo} / (${score.pwa.fnr}, ${score.pwa.ins}, ${score.pwa.po})" => ${score.average}`;
 };
 
 export { processDifference, percentagify, parseScoreString, scoreToString };

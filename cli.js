@@ -5,6 +5,7 @@ const pkg = require('./package.json');
 // eslint-disable-next-line node/no-missing-require
 const avg = require('./build/main').default;
 const {
+  jsonTransform,
   csvTransform,
   mdTransform,
   htmlTransform,
@@ -34,8 +35,7 @@ program
     /* eslint-disable indent */
     switch (program.format) {
       case 'json':
-        console.dir(program.split ? Object.values(results) : results);
-        break;
+        return jsonTransform(results, program);
       case 'csv':
         return csvTransform(results, program, scoreStrings);
       case 'md':
