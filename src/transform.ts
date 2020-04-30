@@ -10,7 +10,7 @@ const csvTransform = (
   cliOpts: CommanderOptions,
   scoreStrings: string[]
 ): void => {
-  const name = (cliOpts.names as string[]).length ? 'name,' : '';
+  const name = (cliOpts.names as string[])?.length ? 'name,' : '';
   if (cliOpts.split) {
     console.log(`${name}perf,a11y,bp,seo,pwa,average`);
     for (const score of results) {
@@ -42,7 +42,7 @@ const mdTransform = (
   cliOpts: CommanderOptions,
   scoreStrings: string[]
 ): void => {
-  const name = (cliOpts.names as string[]).length ? '| Name ' : '';
+  const name = (cliOpts.names as string[])?.length ? '| Name ' : '';
   if (cliOpts.split) {
     console.log(
       `${name}| Perf | A11y | BP | SEO | PWA | Average |\n|------|------|----|-----|-----|---------|`
@@ -75,7 +75,7 @@ const htmlTransform = (
   cliOpts: CommanderOptions,
   scoreStrings: string[]
 ): void => {
-  const name = (cliOpts.names as string[]).length ? '<th>Name</th>' : '';
+  const name = (cliOpts.names as string[])?.length ? '<th>Name</th>' : '';
   if (cliOpts.split) {
     console.log(
       `<table>\n  <tr>\n    ${name}<th>Perf</th><th>A11y</th><th>BP</th><th>SEO</th><th>PWA</th><th>Average</th>\n  </tr>`
@@ -114,15 +114,15 @@ const textTransform = (
   cliOpts: CommanderOptions,
   scoreStrings: string[]
 ): void => {
-  const name = cliOpts.names ? 'Name: ' : '';
+  const name = (cliOpts.names as string[])?.length ? 'Name: ' : '';
   if (cliOpts.split) {
     console.log(`${name}Perf / A11y / BP / SEO / PWA => Average`);
     for (const score of results) {
       let out = Object.values(score);
-      if (cliOpts.names) {
+      if (name.length) {
         out = out.slice(0, -1);
         out[4] = `(${Object.values(out[4]).join(', ')})`;
-        console.log(cliOpts.name ? score.name + ':' : '', out.join(' / ').replace(') /', ') =>'));
+        console.log(cliOpts.names ? score.name + ':' : '', out.join(' / ').replace(') /', ') =>'));
       } else {
         out[4] = `(${Object.values(out[4]).join(', ')})`;
         console.log(out.join(' / ').replace(') /', ') =>'));
@@ -134,12 +134,13 @@ const textTransform = (
       if (cliOpts.diff) {
         const str = scoreToString(results[idx]);
         console.log(str);
-      } else
+      } else {
         console.log(
           `${cliOpts.names ? results[idx].name + ': ' : ''}"${scoreStrings[idx]}" => ${
             results[idx].average
           }`
         );
+      }
     }
   }
 };
