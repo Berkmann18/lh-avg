@@ -243,10 +243,28 @@ describe('HTML', () => {
 });
 
 // Errors
-test('Error', async () => {
-  try {
-    await cliProcess.execute(['0/0/0/0']);
-  } catch (err) {
-    expect(/Error: (.*?)\n/g.exec(err)[1]).toEqual('Invalid expression!');
-  }
+describe('Errors', () => {
+  it('handles bad inputs', async () => {
+    try {
+      await cliProcess.execute(['0/0/0/0']);
+    } catch (err) {
+      expect(/Error: (.*?)\n/g.exec(err)[1]).toEqual('Invalid expression!');
+    }
+  });
+
+  it('handles empty inputs', async () => {
+    try {
+      await cliProcess.execute([]);
+    } catch (err) {
+      expect(/Error: (.*?)\n/g.exec(err)[1]).toEqual('No input found!');
+    }
+  });
+
+  it('handles empty names', async () => {
+    try {
+      await cliProcess.execute(['-n', '']);
+    } catch (err) {
+      expect(/Error: (.*?)\n/g.exec(err)[1]).toEqual('No input found!');
+    }
+  });
 });
