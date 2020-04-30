@@ -4,15 +4,8 @@
 const { program } = require('commander');
 const { cosmiconfig } = require('cosmiconfig');
 const pkg = require('./package.json');
+const { generate } = require('./build/main/process');
 /* eslint-disable node/no-missing-require */
-const avg = require('./build/main').default;
-const {
-  jsonTransform,
-  csvTransform,
-  mdTransform,
-  htmlTransform,
-  textTransform
-} = require('./build/main/transform');
 
 const explorer = cosmiconfig(pkg.name);
 
@@ -30,7 +23,7 @@ const findConfig = (configFromCli) => {
 
   return new Promise((resolve, reject) => {
     if (configFromCli) {
-      explorer.load(program.config).then((result) => {
+      explorer.load(configFromCli).then((result) => {
         if (result && !result.isEmpty) {
           resolve({ ...options, ...result.config });
         } else reject(result);
@@ -46,28 +39,6 @@ const findConfig = (configFromCli) => {
         .catch((err) => reject(err));
     }
   });
-};
-
-const generate = (options) => {
-  const results = avg(options.inputs, {
-    asPercentage: options.percentage,
-    showDiff: options.diff,
-    names: options.names
-  });
-
-  /* eslint-disable indent */
-  switch (options.format) {
-    case 'json':
-      return jsonTransform(results, options);
-    case 'csv':
-      return csvTransform(results, options);
-    case 'md':
-      return mdTransform(results, options);
-    case 'html':
-      return htmlTransform(results, options);
-    default:
-      textTransform(results, options);
-  }
 };
 
 // TODO Refactor this to a shorter function with more re-usable code.
