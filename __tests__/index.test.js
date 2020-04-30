@@ -1,5 +1,5 @@
 const avg = require('../src/index.ts').default;
-// import avg from '../build/main';
+const { AVG, PERC, OUTPUT, PERC_OUTPUT, NAMES, INPUT, TWO_INPUTS } = require('./fixtures');
 
 describe('baseline', () => {
   test('empty', () => {
@@ -43,41 +43,9 @@ describe('baseline', () => {
   });
 });
 
-const AVG = 0.423673469387755;
-const PERC = '42.37%';
-const OUTPUT = [
-  {
-    perf: 0.13,
-    a11y: 0.94,
-    bp: 0.86,
-    seo: 0.75,
-    pwa: {
-      fnr: 0,
-      ins: 0,
-      po: 0.2857142857142857
-    },
-    average: AVG
-  }
-];
-const PERC_OUTPUT = [
-  {
-    perf: '13%',
-    a11y: '94%',
-    bp: '86%',
-    seo: '75%',
-    pwa: {
-      fnr: '0%',
-      ins: '0%',
-      po: '28.57%'
-    },
-    average: PERC
-  }
-];
-const NAMES = ['a', 'b'];
-
 describe('normal', () => {
   test('longhand', () => {
-    expect(avg(['13 / 94 / 86 / 75 / (0/3, 0/3, 2/7)'])).toEqual(OUTPUT);
+    expect(avg([INPUT])).toEqual(OUTPUT);
   });
 
   test('shorthand', () => {
@@ -91,7 +59,7 @@ describe('normal', () => {
 
 describe('percentage', () => {
   test('longhand', () => {
-    expect(avg(['13 / 94 / 86 / 75 / (0/3, 0/3, 2/7)'], { asPercentage: true })).toEqual(PERC_OUTPUT);
+    expect(avg([INPUT], { asPercentage: true })).toEqual(PERC_OUTPUT);
   });
 
   test('shorthand', () => {
@@ -143,7 +111,7 @@ describe('Compressed', () => {
 describe('diff', () => {
   /* eslint-disable security/detect-object-injection */
   test('normal', () => {
-    const actual = avg(['13 / 94 / 86 / 75 / (0, 0, 2)', '26 / 100 / 85 / 75 / (0, 0, 2)'], { showDiff: true });
+    const actual = avg(TWO_INPUTS, { showDiff: true });
     const expected = {
       perf: 0.13,
       a11y: 0.06,
@@ -166,7 +134,7 @@ describe('diff', () => {
   });
 
   test('percentage', () => {
-    const actual = avg(['13 / 94 / 86 / 75 / (0, 0, 2)', '26 / 100 / 85 / 75 / (0, 0, 2)'], { asPercentage: true, showDiff: true });
+    const actual = avg(TWO_INPUTS, { asPercentage: true, showDiff: true });
     const expected = {
       perf: '+13%',
       a11y: '+6%',
@@ -220,7 +188,7 @@ describe('names', () => {
         name: 'b'
       }
     ];
-    expect(avg(['13 / 94 / 86 / 75 / (0, 0, 2)', '26 / 100 / 85 / 75 / (0, 0, 2)'], { names: NAMES })).toEqual(expected);
+    expect(avg(TWO_INPUTS, { names: NAMES })).toEqual(expected);
   });
 
   test('diff', () => {
@@ -252,7 +220,7 @@ describe('names', () => {
         name: 'b'
       }
     ];
-    const actual = avg(['13 / 94 / 86 / 75 / (0, 0, 2)', '26 / 100 / 85 / 75 / (0, 0, 2)'], { showDiff: true, names: NAMES });
+    const actual = avg(TWO_INPUTS, { showDiff: true, names: NAMES });
     expect(actual[0]).toEqual({ ...OUTPUT[0], name: NAMES[0] });
     ['perf', 'a11y', 'bp', 'seo', 'average'].forEach(key => {
       expect(actual[1][key]).toBeCloseTo(expected[1][key], 5);
@@ -291,6 +259,6 @@ describe('names', () => {
         name: 'b'
       }
     ];
-    expect(avg(['13 / 94 / 86 / 75 / (0, 0, 2)', '26 / 100 / 85 / 75 / (0, 0, 2)'], { asPercentage: true, showDiff: true, names: NAMES })).toEqual(expected);
+    expect(avg(TWO_INPUTS, { asPercentage: true, showDiff: true, names: NAMES })).toEqual(expected);
   });
 });
