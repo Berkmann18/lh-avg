@@ -24,7 +24,8 @@ const findConfig = (configFromCli) => {
     split: false,
     diff: false,
     names: [],
-    inputs: []
+    inputs: [],
+    multi: {}
   };
 
   return new Promise((resolve, reject) => {
@@ -47,6 +48,28 @@ const findConfig = (configFromCli) => {
   });
 };
 
+const generate = (options) => {
+  const results = avg(options.inputs, {
+    asPercentage: options.percentage,
+    showDiff: options.diff,
+    names: options.names
+  });
+
+  /* eslint-disable indent */
+  switch (options.format) {
+    case 'json':
+      return jsonTransform(results, options);
+    case 'csv':
+      return csvTransform(results, options);
+    case 'md':
+      return mdTransform(results, options);
+    case 'html':
+      return htmlTransform(results, options);
+    default:
+      textTransform(results, options);
+  }
+};
+
 // TODO Refactor this to a shorter function with more re-usable code.
 program
   .arguments('[scoreStrings...]')
@@ -61,6 +84,7 @@ program
   .option('-d, --diff', 'Shows the difference between the first row and subsequent ones')
   .option('-n, --names <names>', 'Add names to each results', (value) => value.split(','))
   .option('-c, --config <config>', 'Use the configuration from the specified path')
+  // .option('-m, --multi <multi>', 'Show multiple results')
   .action(async (scoreStrings) => {
     let options = {};
     try {
@@ -68,30 +92,19 @@ program
     } catch (err) {
       if (!scoreStrings.length) throw new Error('No input found!');
     }
+    // TODO Add CLI option for multi
     ['percentage', 'format', 'split', 'diff', 'names'].forEach((option) => {
       // eslint-disable-next-line security/detect-object-injection
       if (program[option]) options[option] = program[option];
     });
     if (scoreStrings.length) options.inputs = scoreStrings;
 
-    const results = avg(options.inputs, {
-      asPercentage: options.percentage,
-      showDiff: options.diff,
-      names: options.names
-    });
-
-    /* eslint-disable indent */
-    switch (options.format) {
-      case 'json':
-        return jsonTransform(results, options);
-      case 'csv':
-        return csvTransform(results, options);
-      case 'md':
-        return mdTransform(results, options);
-      case 'html':
-        return htmlTransform(results, options);
-      default:
-        textTransform(results, options);
-    }
+    if (options.multi) {
+      for (const title in options.multi) {
+        console.log(`\n${title}`);
+        // eslint-disable-next-line security/detect-object-injection
+        generate({ ...options, inputs: options.multi[title] });
+      }
+    } else generate(options);
   })
   .parse(process.argv);

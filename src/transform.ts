@@ -34,14 +34,16 @@ const csvTransform = (results: Result[], cliOpts: CommanderOptions): void => {
 };
 
 const mdTransform = (results: Result[], cliOpts: CommanderOptions): void => {
-  const name = (cliOpts.names as string[])?.length ? '| Name ' : '';
+  const hasNames = (cliOpts.names as string[])?.length;
   if (cliOpts.split) {
     console.log(
-      `${name}| Perf | A11y | BP | SEO | PWA | Average |\n|------|------|----|-----|-----|---------|`
+      hasNames
+        ? '| Name | Perf | A11y | BP | SEO | PWA | Average |\n|------|------|------|----|-----|-----|---------|'
+        : '| Perf | A11y | BP | SEO | PWA | Average |\n|------|------|----|-----|-----|---------|'
     );
     for (const score of results) {
       let out = Object.values(score);
-      if (name.length) {
+      if (hasNames) {
         out = out.slice(0, -1);
         out[4] = `(${Object.values(out[4]).join(', ')})`;
         console.log(score.name ? `| ${score.name}` : '', '|', out.join(' | '), '|');
@@ -51,7 +53,11 @@ const mdTransform = (results: Result[], cliOpts: CommanderOptions): void => {
       }
     }
   } else {
-    console.log(`${name}| Input | Average |\n|-------|---------|`);
+    console.log(
+      hasNames
+        ? '| Name | Input | Average |\n|------|-------|---------|'
+        : '| Input | Average |\n|-------|---------|'
+    );
     for (const idx in results) {
       console.log(
         `${results[idx].name ? '| ' + results[idx].name + ' ' : ''}| ${cliOpts.inputs[idx]} | ${

@@ -68,6 +68,22 @@ The CLI will look for configuration files following the `cosmiconfig` approach:
 
 It will first read the configuration (if it finds one) _then_ look at the CLI options (which overrides the relevant configuration options).
 
+#### Example
+```json
+{
+  "format": "md",
+  "split": true,
+  "percentage": true,
+  "inputs": [
+    "86/100/79/100/(1, 1, 6)",
+    "90/100/79/100/(1, 2, 6)"
+  ],
+  "diff": true,
+  "names": ["`master`", "`pr`"],
+  "multi": {}
+}
+```
+
 ## ES Module
 
 ```js

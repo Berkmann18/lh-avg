@@ -190,11 +190,11 @@ const MD_SD_OUTPUT = `| Perf | A11y | BP | SEO | PWA | Average |
 | 0.13 | 0.06000000000000005 | -0.010000000000000009 | 0 | (0, 0, 0) | ${DIFF.average} |
 `;
 const MD_NAMED_OUTPUT = `| Name | Input | Average |
-|-------|---------|
+|------|-------|---------|
 | ${NAMES[0]} | ${INPUT} | ${AVG} |
 `;
 const MD_SN_OUTPUT = `| Name | Perf | A11y | BP | SEO | PWA | Average |
-|------|------|----|-----|-----|---------|
+|------|------|------|----|-----|-----|---------|
 | ${NAMES[0]} | 0.13 | 0.94 | 0.86 | 0.75 | (0, 0, ${OUTPUT[0].pwa.po}) | ${AVG} |
 `;
 const MD_SDP_OUTPUT = `| Perf | A11y | BP | SEO | PWA | Average |
