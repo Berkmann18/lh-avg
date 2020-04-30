@@ -43,7 +43,6 @@ const findConfig = (configFromCli) => {
   });
 };
 
-// TODO Refactor this to a shorter function with more re-usable code.
 program
   .arguments('[scoreStrings...]')
   .version(pkg.version)
@@ -57,7 +56,10 @@ program
   .option('-d, --diff', 'Shows the difference between the first row and subsequent ones')
   .option('-n, --names <names>', 'Add names to each results', (value) => value.split(','))
   .option('-c, --config <config>', 'Use the configuration from the specified path')
-  // .option('-m, --multi <multi>', 'Show multiple results')
+  .option(
+    '-m, --multi <multi>',
+    'Show multiple results (EXPERIMENTAL, please the config option for this)'
+  )
   .action(async (scoreStrings) => {
     let options = {};
     try {
@@ -65,8 +67,7 @@ program
     } catch (err) {
       if (!scoreStrings.length) throw new Error('No input found!');
     }
-    // TODO Add CLI option for multi
-    ['percentage', 'format', 'split', 'diff', 'names'].forEach((option) => {
+    ['percentage', 'format', 'split', 'diff', 'names', 'mutli'].forEach((option) => {
       // eslint-disable-next-line security/detect-object-injection
       if (program[option]) options[option] = program[option];
     });
