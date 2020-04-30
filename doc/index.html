@@ -125,13 +125,28 @@ Options:
 						<li><code>lh-avg.config.js</code></li>
 					</ol>
 					<p>It will first read the configuration (if it finds one) <em>then</em> look at the CLI options (which overrides the relevant configuration options).</p>
+					<a href="#example" id="example" style="color: inherit; text-decoration: none;">
+						<h4>Example</h4>
+					</a>
+					<pre><code class="language-json">{
+  <span class="hljs-attr">"format"</span>: <span class="hljs-string">"md"</span>,
+  <span class="hljs-attr">"split"</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">"percentage"</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">"inputs"</span>: [
+    <span class="hljs-string">"86/100/79/100/(1, 1, 6)"</span>,
+    <span class="hljs-string">"90/100/79/100/(1, 2, 6)"</span>
+  ],
+  <span class="hljs-attr">"diff"</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">"names"</span>: [<span class="hljs-string">"`master`"</span>, <span class="hljs-string">"`pr`"</span>],
+  <span class="hljs-attr">"multi"</span>: {}
+}</code></pre>
 					<a href="#es-module" id="es-module" style="color: inherit; text-decoration: none;">
 						<h2>ES Module</h2>
 					</a>
 					<pre><code class="language-js"><span class="hljs-keyword">import</span> average <span class="hljs-keyword">from</span> <span class="hljs-string">'lh-avg'</span>;
 <span class="hljs-comment">// Or</span>
 <span class="hljs-keyword">const</span> average = <span class="hljs-built_in">require</span>(<span class="hljs-string">'lh-avg'</span>).default;</code></pre>
-					<a href="#example" id="example" style="color: inherit; text-decoration: none;">
+					<a href="#example-1" id="example-1" style="color: inherit; text-decoration: none;">
 						<h1>Example</h1>
 					</a>
 					<pre><code class="language-ts"><span class="hljs-keyword">import</span> average <span class="hljs-keyword">from</span> <span class="hljs-string">'lh-avg'</span>;
