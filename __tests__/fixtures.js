@@ -92,7 +92,7 @@ const TEXT_SP_OUTPUT = `Perf / A11y / BP / SEO / PWA => Average
 
 const NAMES = ['a', 'b'];
 
-const DIFF = {
+/* const DIFF = {
   perf: 0.13,
   a11y: 0.06,
   bp: -0.01,
@@ -103,7 +103,12 @@ const DIFF = {
     po: 0
   },
   average: 0.02571428571428576
-};
+}; */
+
+const TEXT_DIFF_OUTPUT = `Input: Average
+0.13 / 0.94 / 0.86 / 0.75 / (0, 0, 0.2857142857142857) => ${AVG}
+0.13 / 0.06 / -0.01 / 0 / (0, 0, 0) => 0.025714285714285745
+`;
 
 module.exports = {
   AVG,
@@ -118,7 +123,7 @@ module.exports = {
     perc: TEXT_PERC_OUTPUT,
     split: TEXT_SPLIT_OUTPUT,
     splitPerc: TEXT_SP_OUTPUT,
-    diff: null
+    diff: TEXT_DIFF_OUTPUT
   },
   JSON: {
     normal: JSON_OUTPUT,

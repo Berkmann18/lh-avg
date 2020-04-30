@@ -1,6 +1,6 @@
 const path = require('path');
 const cmd = require('./cmd');
-const { INPUT, AVG, PERC, JSON, CSV, MD, HTML, DEFAULT } = require('./fixtures');
+const { INPUT, TWO_INPUTS, JSON, CSV, MD, HTML, DEFAULT } = require('./fixtures');
 
 /* test('normal', async (done) => {
   const response = await cmd.execute('./cli', [INPUT]);
@@ -46,9 +46,12 @@ describe('Singular flag', () => {
     const response = await cliProcess.execute([INPUT, '-s']);
     expect(response).toEqual(DEFAULT.split);
   });
-});
 
-// TODO -s
+  it('can show diff data', async () => {
+    const response = await cliProcess.execute([...TWO_INPUTS, '-d']);
+    expect(response).toEqual(DEFAULT.diff);
+  });
+});
 
 // TODO -d
 
