@@ -14,7 +14,7 @@
   "scripts": {
     "lint": "eslint . && npm run lint:lockfile",
     "lint:fix": "eslint . --fix",
-    "format": "prettier --config .prettierrc.js --write 'src/*.ts' cli.js",
+    "format": "prettier --config .prettierrc --write 'src/*.ts' cli.js",
     "test": "jest",
     "sec": "snyk test",
     "test:watch": "jest --watch",
