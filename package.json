@@ -113,7 +113,8 @@
     "collectCoverageFrom": [
       "index.js",
       "src/**/*.{js,ts}",
-      "!src/typings/*.ts"
+      "!src/typings/*.ts",
+      "!src/transform.ts"
     ],
     "testMatch": [
       "**/*.test.js"
