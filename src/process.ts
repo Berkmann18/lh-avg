@@ -1,5 +1,13 @@
-// eslint-disable-next-line node/no-missing-import
+/* eslint-disable node/no-missing-import */
 import split from './split';
+import avg from './index';
+import {
+  jsonTransform,
+  csvTransform,
+  mdTransform,
+  htmlTransform,
+  textTransform
+} from './transform';
 
 const round = (num: number): number => Math.round(num * 100) / 100;
 
@@ -116,4 +124,26 @@ const scoreToString = (score: Result /*,  rounding = false */): string => {
   return `"${score.perf} / ${score.a11y} / ${score.bp} / ${score.seo} / (${score.pwa.fnr}, ${score.pwa.ins}, ${score.pwa.po})" => ${score.average}`;
 };
 
-export { processDifference, percentagify, parseScoreString, scoreToString };
+const generate = (options: CommanderOptions): void => {
+  const results = avg(options.inputs, {
+    asPercentage: options.percentage,
+    showDiff: options.diff,
+    names: options.names
+  });
+
+  /* eslint-disable indent */
+  switch (options.format) {
+    case 'json':
+      return jsonTransform(results, options);
+    case 'csv':
+      return csvTransform(results, options);
+    case 'md':
+      return mdTransform(results, options);
+    case 'html':
+      return htmlTransform(results, options);
+    default:
+      textTransform(results, options);
+  }
+};
+
+export { processDifference, percentagify, parseScoreString, scoreToString, generate };
