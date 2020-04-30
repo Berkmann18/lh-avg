@@ -89,10 +89,10 @@ describe('CSV', () => {
 });
 
 describe('JSON', () => {
-  // it('can show percentages', async () => {
-  //   const response = await cliProcess.execute([INPUT, '-pf', 'json']);
-  //   expect(response).toEqual(JSON.perc);
-  // });
+  it('can show percentages', async () => {
+    const response = await cliProcess.execute([INPUT, '-pf', 'json']);
+    expect(response).toEqual(JSON.perc);
+  });
 
   it('can show split data', async () => {
     const response = await cliProcess.execute([INPUT, '-sf', 'json']);
@@ -104,11 +104,15 @@ describe('JSON', () => {
   //   expect(response).toEqual(JSON.diff);
   // });
 
-  // it('can show named data', async () => {
-  //   const response = await cliProcess.execute([INPUT, '-n', 'a', '-f', 'json']);
-  //   expect(response).toEqual(JSON.named);
-  // });
+  it('can show named data', async () => {
+    const response = await cliProcess.execute([INPUT, '-n', 'a', '-f', 'json']);
+    expect(response).toEqual(JSON.named);
+  });
 });
+
+// TODO MD ...
+
+// TODO HTML ...
 
 // TODO -psd
 

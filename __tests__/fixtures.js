@@ -63,12 +63,43 @@ const JSON_PERC_OUTPUT = `[
     bp: '86%',
     seo: '75%',
     pwa: { fnr: '0%', ins: '0%', po: '28.57%' },
-    average: ${PERC}
+    average: '${PERC}'
   }
 ]
 `;
 
-const JSON_SPLIT_OUTPUT = ``
+const JSON_DIFF_OUTPUT = `[
+  {
+    perf: 0.13,
+    a11y: 0.94,
+    bp: 0.86,
+    seo: 0.75,
+    pwa: { fnr: 0, ins: 0, po: 0.2857142857142857 },
+    average: ${AVG}
+  },
+  {
+    perf: 0.13,
+    a11y: 0.06,
+    bp: -0.01,
+    seo: 0,
+    pwa: { fnr: 0, ins: 0, po: 0 },
+    average: ${DIFF.average}
+  }
+]
+`;
+const JSON_NAMED_OUTPUT = `[
+  {
+    perf: 0.13,
+    a11y: 0.94,
+    bp: 0.86,
+    seo: 0.75,
+    pwa: { fnr: 0, ins: 0, po: 0.2857142857142857 },
+    average: ${AVG},
+    name: '${NAMES[0]}'
+  }
+]
+`;
+
 
 const CSV_OUTPUT = `input,average
 "${INPUT}",${AVG}
@@ -153,9 +184,8 @@ module.exports = {
   JSON: {
     normal: JSON_OUTPUT,
     perc: JSON_PERC_OUTPUT,
-    splitPerc: null, // JSON_SP_OUTPUT,
-    diff: null, // JSON_DIFF_OUTPUT,
-    named: null
+    diff: JSON_DIFF_OUTPUT,
+    named: JSON_NAMED_OUTPUT
   },
   CSV: {
     normal: CSV_OUTPUT,
