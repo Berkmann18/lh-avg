@@ -116,7 +116,7 @@ const average = (
   { asPercentage = false, showDiff = false, names = [] } = {}
 ): Result[] => {
   const results: Result[] = scoreStrings.map((str) => avg(str, asPercentage));
-  if (names.length) {
+  if (names?.length) {
     /* eslint-disable security/detect-object-injection */
     results.forEach((res, idx) => {
       res.name = names[idx];

@@ -10,12 +10,12 @@ const csvTransform = (
   cliOpts: CommanderOptions,
   scoreStrings: string[]
 ): void => {
-  const name = cliOpts.names ? 'name,' : '';
+  const name = (cliOpts.names as string[]).length ? 'name,' : '';
   if (cliOpts.split) {
     console.log(`${name}perf,a11y,bp,seo,pwa,average`);
     for (const score of results) {
       let out = Object.values(score);
-      if (cliOpts.names) {
+      if (name.length) {
         out = out.slice(0, -1);
         out[4] = `${Object.values(out[4]).join('/')}`;
         console.log(`${score.name},${out.join(',')}`);
@@ -29,7 +29,7 @@ const csvTransform = (
     console.log(`${name}input,average`);
     for (const idx in results) {
       console.log(
-        `${cliOpts.names ? cliOpts.names[idx] + ',' : ''}"${scoreStrings[idx]}",${
+        `${name.length ? cliOpts.names[idx] + ',' : ''}"${scoreStrings[idx]}",${
           results[idx].average
         }`
       );
@@ -42,17 +42,17 @@ const mdTransform = (
   cliOpts: CommanderOptions,
   scoreStrings: string[]
 ): void => {
-  const name = cliOpts.names ? '| Name ' : '';
+  const name = (cliOpts.names as string[]).length ? '| Name ' : '';
   if (cliOpts.split) {
     console.log(
       `${name}| Perf | A11y | BP | SEO | PWA | Average |\n|------|------|----|-----|-----|---------|`
     );
     for (const score of results) {
       let out = Object.values(score);
-      if (cliOpts.names) {
+      if (name.length) {
         out = out.slice(0, -1);
         out[4] = `(${Object.values(out[4]).join(', ')})`;
-        console.log(score.name && `| ${score.name}`, '|', out.join(' | '), '|');
+        console.log(score.name ? `| ${score.name}` : '', '|', out.join(' | '), '|');
       } else {
         out[4] = `(${Object.values(out[4]).join(', ')})`;
         console.log('|', out.join(' | '), '|');
@@ -75,14 +75,14 @@ const htmlTransform = (
   cliOpts: CommanderOptions,
   scoreStrings: string[]
 ): void => {
-  const name = cliOpts.names ? '<th>Name</th>' : '';
+  const name = (cliOpts.names as string[]).length ? '<th>Name</th>' : '';
   if (cliOpts.split) {
     console.log(
       `<table>\n  <tr>\n    ${name}<th>Perf</th><th>A11y</th><th>BP</th><th>SEO</th><th>PWA</th><th>Average</th>\n  </tr>`
     );
     for (const score of results) {
       let out = Object.values(score);
-      if (cliOpts.names) {
+      if (name.length) {
         out = out.slice(0, -1);
         out[4] = `(${Object.values(out[4]).join(', ')})`;
         console.log(
