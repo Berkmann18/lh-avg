@@ -86,13 +86,13 @@ program
       case 'json':
         return jsonTransform(results, options);
       case 'csv':
-        return csvTransform(results, options, options.inputs);
+        return csvTransform(results, options);
       case 'md':
-        return mdTransform(results, options, options.inputs);
+        return mdTransform(results, options);
       case 'html':
-        return htmlTransform(results, options, options.inputs);
+        return htmlTransform(results, options);
       default:
-        textTransform(results, options, options.inputs);
+        textTransform(results, options);
     }
   })
   .parse(process.argv);
