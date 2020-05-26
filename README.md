@@ -55,11 +55,11 @@ Options:
 
 ### Configuration
 The CLI will look for configuration files following the `cosmiconfig` approach:
-1. `lh-avg` property in `package.json`
-2. `.lh-avgrc` (using JSON or YAML syntax)
-3. `.lh-avgrc.json`
-4. `.lh-avgrc.yaml`/`.lh-avgrc.yml`/`.lh-avgrc.js`
-5. `lh-avg.config.js`
+1.  `lh-avg` property in `package.json`
+2.  `.lh-avgrc` (using JSON or YAML syntax)
+3.  `.lh-avgrc.json`
+4.  `.lh-avgrc.yaml`/`.lh-avgrc.yml`/`.lh-avgrc.js`
+5.  `lh-avg.config.js`
 
 It will first read the configuration (if it finds one) _then_ look at the CLI options (which overrides the relevant configuration options).
 
