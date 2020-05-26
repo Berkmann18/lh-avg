@@ -12,7 +12,7 @@
     "npm": ">=6.0.0"
   },
   "scripts": {
-    "lint": "eslint . && npm run lint:lockfile",
+    "lint": "eslint . && npm run lint:lockfile && npm run lint:md",
     "lint:fix": "eslint . --fix",
     "format": "prettier --config .prettierrc --write 'src/*.ts' cli.js",
     "test": "jest",
