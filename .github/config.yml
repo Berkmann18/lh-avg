@@ -57,6 +57,6 @@ sentimentBotReplyComment: >
 # Configuration for issuelabeler - https://riyadhalnur.github.io/issuelabeler/
 # Number of labels to fetch (optional). Defaults to 20
 numLabels: 40
-# These labels will not be used even if the issue contains them (optional). 
+# These labels will not be used even if the issue contains them (optional).
 # Pass a blank array if no labels are to be excluded.
 excludeLabels: []
