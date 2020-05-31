@@ -12,7 +12,7 @@
     "npm": ">=6.0.0"
   },
   "scripts": {
-    "lint": "eslint . && npm run lint:lockfile",
+    "lint": "eslint . && npm run lint:lockfile && npm run lint:md",
     "lint:fix": "eslint . --fix",
     "format": "prettier --config .prettierrc --write 'src/*.ts' cli.js",
     "test": "jest",
@@ -70,7 +70,6 @@
     "cross-spawn": "^7.0.2",
     "cz-conventional-changelog": "^3.1.0",
     "eslint": "^6.0.1",
-    "eslint-config-standard": "^14.1.1",
     "eslint-plugin-import": "^2.18.0",
     "eslint-plugin-jest": "^23.8.2",
     "eslint-plugin-jquery": "^1.5.1",
@@ -180,7 +179,6 @@
     ],
     "extends": [
       "eslint:recommended",
-      "standard",
       "plugin:security/recommended",
       "plugin:node/recommended",
       "plugin:you-dont-need-lodash-underscore/compatible",

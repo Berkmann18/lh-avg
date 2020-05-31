@@ -9,9 +9,10 @@ daysUntilClose: 14
 
 # Issues or Pull Requests with these labels will never be considered stale. Set to `[]` to disable
 exemptLabels:
-  - "Status: On Hold :stop_sign:"
-  - "Type: Vulnerability :warning"
+  - 'Status: On Hold :stop_sign:'
+  - 'Type: Vulnerability :warning'
   - security
+  - 'Status: Accepted :heavy_check_mark:'
 
 # Set to true to ignore issues in a project (defaults to false)
 exemptProjects: false
@@ -20,7 +21,7 @@ exemptProjects: false
 exemptMilestones: false
 
 # Label to use when marking as stale
-staleLabel: "Status: Left Out :left_luggage:"
+staleLabel: 'Status: Left Out :left_luggage:'
 
 # Comment to post when marking as stale. Set to `false` to disable
 markComment: >
@@ -38,18 +39,3 @@ closeComment: >
 
 # Limit the number of actions per hour, from 1-30. Default is 30
 limitPerRun: 30
-
-# Limit to only `issues` or `pulls`
-# only: issues
-
-# Optionally, specify configuration settings that are specific to just 'issues' or 'pulls':
-# pulls:
-#   daysUntilStale: 30
-#   markComment: >
-#     This pull request has been automatically marked as stale because it has not had
-#     recent activity. It will be closed if no further activity occurs. Thank you
-#     for your contributions.
-
-# issues:
-exemptLabels:
-  - "Status: Accepted :heavy_check_mark:"
