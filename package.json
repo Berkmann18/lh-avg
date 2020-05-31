@@ -179,7 +179,6 @@
     ],
     "extends": [
       "eslint:recommended",
-      "standard",
       "plugin:security/recommended",
       "plugin:node/recommended",
       "plugin:you-dont-need-lodash-underscore/compatible",
