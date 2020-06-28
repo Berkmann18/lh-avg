@@ -46,6 +46,7 @@ const findConfig = (configFromCli) => {
           } else reject(err);
         });
     } else {
+      // TODO Implement JF here as well
       explorer
         .search()
         .then((result) => {
