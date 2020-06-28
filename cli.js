@@ -5,6 +5,8 @@ const { program } = require('commander');
 const { cosmiconfig } = require('cosmiconfig');
 const pkg = require('./package.json');
 const { generate } = require('./build/main/process');
+const jsonFixer = require('json-fixer');
+const { readFileSync, writeFileSync } = require('fs');
 
 const explorer = cosmiconfig(pkg.name);
 
@@ -29,8 +31,18 @@ const findConfig = (configFromCli) => {
             resolve({ ...options, ...result.config });
           } else reject(result);
         })
-        .catch((err) => reject(err));
+        .catch((err) => {
+          if (err.name === 'JSONError') {
+            const configData = readFileSync(configFromCli, 'utf-8');
+            const { data, changed } = jsonFixer(configData);
+            if (changed) {
+              writeFileSync(configFromCli, JSON.stringify(data, null, 2));
+              resolve({ ...options, ...data });
+            }
+          } else reject(err);
+        });
     } else {
+      // TODO Implement JF here as well
       explorer
         .search()
         .then((result) => {
