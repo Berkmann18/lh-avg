@@ -5,8 +5,19 @@ const { program } = require('commander');
 const { cosmiconfig } = require('cosmiconfig');
 const pkg = require('./package.json');
 const { generate } = require('./build/main/process');
+const jsonFixer = require('json-fixer');
+const { readFileSync, writeFileSync } = require('fs');
 
 const explorer = cosmiconfig(pkg.name);
+
+const fixConfig = (filename, options, callback) => {
+  const configData = readFileSync(filename, 'utf-8');
+  const { data, changed } = jsonFixer(configData);
+  if (changed) {
+    writeFileSync(filename, JSON.stringify(data, null, 2));
+    callback({ ...options, ...data });
+  }
+};
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const findConfig = (configFromCli) => {
@@ -29,16 +40,31 @@ const findConfig = (configFromCli) => {
             resolve({ ...options, ...result.config });
           } else reject(result);
         })
-        .catch((err) => reject(err));
+        .catch((err) => {
+          if (err.name === 'JSONError') {
+            fixConfig(configFromCli, options, resolve);
+          } else reject(err);
+        });
     } else {
       explorer
         .search()
         .then((result) => {
           if (result && !result.isEmpty) {
             resolve({ ...options, ...result.config });
-          } else reject(result); // Will be null when running `./cli.js`
+          } else reject(result);
         })
-        .catch((err) => reject(err));
+        .catch((err) => {
+          if (err.name !== 'JSONError') {
+            reject(err);
+            return err;
+          }
+          const filename = /JSON Error in (.*?):\n?/.exec(err.message);
+          if (filename === null) {
+            reject(err);
+            return err;
+          }
+          fixConfig(filename[1], options, resolve);
+        });
     }
   });
 };
