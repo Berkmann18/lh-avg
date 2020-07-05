@@ -58,8 +58,7 @@ const findConfig = (configFromCli) => {
             reject(err);
             return err;
           }
-          const filenameRE = /JSON Error in (.*?):\n?/;
-          const filename = filenameRE.exec(err.message);
+          const filename = /JSON Error in (.*?):\n?/.exec(err.message);
           if (filename === null) {
             reject(err);
             return err;
