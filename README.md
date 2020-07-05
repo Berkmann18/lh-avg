@@ -29,7 +29,7 @@
 # Install
 
 ```bash
-npm install --save lh-avg
+npm i --save lh-avg
 ```
 
 # Usage
