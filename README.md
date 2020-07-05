@@ -63,6 +63,8 @@ The CLI will look for configuration files following the `cosmiconfig` approach:
 
 It will first read the configuration (if it finds one) _then_ look at the CLI options (which overrides the relevant configuration options).
 
+_Note:_ If it encounters a broken/invalid JSON configuration file, it will try to fix it and save the changes to the file itself. It won't be able to do the same for YAML files!
+
 #### Example
 ```json
 {
@@ -79,7 +81,7 @@ It will first read the configuration (if it finds one) _then_ look at the CLI op
 }
 ```
 
-## ES Module
+## Imports
 
 ```js
 import average from 'lh-avg';
