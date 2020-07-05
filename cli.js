@@ -10,6 +10,15 @@ const { readFileSync, writeFileSync } = require('fs');
 
 const explorer = cosmiconfig(pkg.name);
 
+const fixConfig = (filename, options, callback) => {
+  const configData = readFileSync(filename, 'utf-8');
+  const { data, changed } = jsonFixer(configData);
+  if (changed) {
+    writeFileSync(filename, JSON.stringify(data, null, 2));
+    callback({ ...options, ...data });
+  }
+};
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const findConfig = (configFromCli) => {
   const options = {
@@ -33,24 +42,30 @@ const findConfig = (configFromCli) => {
         })
         .catch((err) => {
           if (err.name === 'JSONError') {
-            const configData = readFileSync(configFromCli, 'utf-8');
-            const { data, changed } = jsonFixer(configData);
-            if (changed) {
-              writeFileSync(configFromCli, JSON.stringify(data, null, 2));
-              resolve({ ...options, ...data });
-            }
+            fixConfig(configFromCli, options, resolve);
           } else reject(err);
         });
     } else {
-      // TODO Implement JF here as well
       explorer
         .search()
         .then((result) => {
           if (result && !result.isEmpty) {
             resolve({ ...options, ...result.config });
-          } else reject(result); // Will be null when running `./cli.js`
+          } else reject(result);
         })
-        .catch((err) => reject(err));
+        .catch((err) => {
+          if (err.name !== 'JSONError') {
+            reject(err);
+            return err;
+          }
+          const filenameRE = /JSON Error in (.*?):\n?/;
+          const filename = filenameRE.exec(err.message);
+          if (filename === null) {
+            reject(err);
+            return err;
+          }
+          fixConfig(filename[1], options, resolve);
+        });
     }
   });
 };
