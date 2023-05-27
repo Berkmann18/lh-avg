@@ -28,8 +28,7 @@
     "build:module": "tsc -p tsconfig.module.json",
     "build:watch": "tsc --watch",
     "prepare": "husky install",
-    "precommit": "lint-staged",
-    "postcommit": "commitlint --edit ${1}"
+    "precommit": "lint-staged"
   },
   "author": {
     "name": "Maximilian Berkmann",
