@@ -33,9 +33,11 @@ const findConfig = (configFromCli) => {
 
   return new Promise((resolve, reject) => {
     if (configFromCli) {
+      // console.log('cFC')
       explorer
         .load(configFromCli)
         .then((result) => {
+          // console.log('got=', result)
           if (result && !result.isEmpty) {
             resolve({ ...options, ...result.config });
           } else reject(result);
@@ -46,9 +48,11 @@ const findConfig = (configFromCli) => {
           } else reject(err);
         });
     } else {
+      // console.log('Searching')
       explorer
         .search()
         .then((result) => {
+          // console.log('found=', result)
           if (result && !result.isEmpty) {
             resolve({ ...options, ...result.config });
           } else reject(result);
@@ -90,6 +94,7 @@ program
     let options = {};
     try {
       options = await findConfig(program.config);
+      console.log('opts=', options);
     } catch (err) {
       if (!scoreStrings.length) throw new Error('No input found!');
     }
