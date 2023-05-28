@@ -5,7 +5,6 @@ test('scoreToString', () => {
   expect(scoreToString(OUTPUT[0])).toBe(PARSED_OUTPUT);
 });
 
-
 //TODO: Add tests that properly check the output from the transformers used by generate()
 describe('generate', () => {
   test('JSON', () => {
