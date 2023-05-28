@@ -113,7 +113,11 @@ const avg = (scoreStr: string, asPercentage: boolean): Result => {
  */
 const average = (
   scoreStrings: string[],
-  { asPercentage = false, showDiff = false, names = [] } = {}
+  {
+    asPercentage = false,
+    showDiff = false,
+    names = []
+  }: { asPercentage?: boolean; showDiff?: boolean; names?: string[] } = {}
 ): Result[] => {
   const results: Result[] = scoreStrings.map((str) => avg(str, asPercentage));
   if (names.length) {

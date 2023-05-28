@@ -6,7 +6,8 @@ import {
   csvTransform,
   mdTransform,
   htmlTransform,
-  textTransform
+  textTransform,
+  arrayToLog
 } from './transform';
 
 const round = (num: number): number => Math.round(num * 100) / 100;
@@ -131,19 +132,24 @@ const generate = (options: CommanderOptions): void => {
     names: options.names
   });
 
+  let result: string[];
   /* eslint-disable indent */
   switch (options.format) {
     case 'json':
       return jsonTransform(results, options);
     case 'csv':
-      return csvTransform(results, options);
+      result = csvTransform(results, options);
+      break;
     case 'md':
-      return mdTransform(results, options);
+      result = mdTransform(results, options);
+      break;
     case 'html':
-      return htmlTransform(results, options);
+      result = htmlTransform(results, options);
+      break;
     default:
-      textTransform(results, options);
+      result = textTransform(results, options);
   }
+  arrayToLog(result);
 };
 
 export { processDifference, percentagify, parseScoreString, scoreToString, generate };
