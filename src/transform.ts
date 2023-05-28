@@ -52,10 +52,10 @@ const mdTransform = (results: Result[], cliOpts: CommanderOptions): string[] => 
       if (hasNames) {
         out = out.slice(0, -1);
         out[4] = `(${Object.values(out[4]).join(', ')})`;
-        output.push(score.name ? `| ${score.name}` : '', '|', out.join(' | '), '|');
+        output.push((score.name ? `| ${score.name}` : '') + `| ${out.join(' | ')} |`);
       } else {
         out[4] = `(${Object.values(out[4]).join(', ')})`;
-        output.push('|', out.join(' | '), '|');
+        output.push(`| ${out.join(' | ')} |`);
       }
     }
   } else {
@@ -126,7 +126,9 @@ const textTransform = (results: Result[], cliOpts: CommanderOptions): string[] =
       if (name.length) {
         out = out.slice(0, -1);
         out[4] = `(${Object.values(out[4]).join(', ')})`;
-        output.push(cliOpts.names ? score.name + ':' : '', out.join(' / ').replace(') /', ') =>'));
+        output.push(
+          (cliOpts.names ? score.name + ':' : '') + out.join(' / ').replace(') /', ') =>')
+        );
       } else {
         out[4] = `(${Object.values(out[4]).join(', ')})`;
         output.push(out.join(' / ').replace(') /', ') =>'));

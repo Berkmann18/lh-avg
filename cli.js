@@ -94,7 +94,7 @@ program
     let options = {};
     try {
       options = await findConfig(program.config);
-      console.log('opts=', options);
+      // console.log('opts=', options);
     } catch (err) {
       if (!scoreStrings.length) throw new Error('No input found!');
     }
