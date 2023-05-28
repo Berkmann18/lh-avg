@@ -88,7 +88,7 @@ program
   .option('-c, --config <config>', 'Use the configuration from the specified path')
   .option(
     '-m, --multi <multi>',
-    'Show multiple results (EXPERIMENTAL, please the config option for this)'
+    'Show multiple results (EXPERIMENTAL, please use the config option for this)'
   )
   .action(async (scoreStrings) => {
     let options = {};
