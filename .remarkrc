@@ -2,6 +2,14 @@
   "plugins": [
     "remark-preset-lint-recommended",
     "remark-preset-lint-consistent",
-    ["remark-lint-no-undefined-references", { "allow":[ " ", "[ ]" ] }]
+    [
+      "remark-lint-no-undefined-references",
+      {
+        "allow": [
+          " ",
+          "[ ]"
+        ]
+      }
+    ]
   ]
 }
