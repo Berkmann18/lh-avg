@@ -242,7 +242,6 @@ describe('HTML', () => {
   });
 });
 
-// Errors
 describe('Errors', () => {
   it('handles bad inputs', async () => {
     try {

@@ -24,5 +24,12 @@ interface LhReGroup {
   po: string;
 }
 interface CommanderOptions {
-    [key: string]: never;
+  percentage?: boolean;
+  format?: string;
+  split?: boolean;
+  diff?: boolean;
+  names?: string[];
+  config?: string;
+  multi?: Record<string, any>;
+  [key: string]: any;
 }

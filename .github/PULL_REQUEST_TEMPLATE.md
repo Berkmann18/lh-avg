@@ -25,8 +25,8 @@
 ## How Has This Been Tested?
 
 <!--- Please describe in detail how you tested your changes. -->
-<!--- Include details of your testing environment, and the tests you ran to -->
-<!--- see how your change affects other areas of the code, etc. -->
+<!--- Include details of your testing environment and the tests you ran to -->
+<!--- See how your change affects other areas of the code, etc. -->
 <!--- Unit tests are expected for all changes. -->
 
 ## Screenshots (if appropriate):
@@ -34,7 +34,7 @@
 ## Checklist:
 
 <!--- Go over all the following points, and put an `x` in all the boxes that apply. -->
-<!--- If you're unsure about any of these, don't hesitate to ask. We're here to help! -->
+<!--- If you need clarification on any of these, feel free to ask. We're here to help! -->
 
 -   [ ] I have updated the documentation (if required).
 -   [ ] I have read the **CONTRIBUTING** document.

@@ -4,20 +4,18 @@ const INPUT = '13 / 94 / 86 / 75 / (0/3, 0/3, 2/7)';
 const TWO_INPUTS = ['13 / 94 / 86 / 75 / (0, 0, 2)', '26 / 100 / 85 / 75 / (0, 0, 2)'];
 const NAMES = ['a', 'b'];
 
-const OUTPUT = [
-  {
-    perf: 0.13,
-    a11y: 0.94,
-    bp: 0.86,
-    seo: 0.75,
-    pwa: {
-      fnr: 0,
-      ins: 0,
-      po: 0.2857142857142857
-    },
-    average: AVG
-  }
-];
+const OUTPUT = [{
+  perf: 0.13,
+  a11y: 0.94,
+  bp: 0.86,
+  seo: 0.75,
+  pwa: {
+    fnr: 0,
+    ins: 0,
+    po: 0.2857142857142857
+  },
+  average: AVG
+}];
 const DIFF = {
   perf: 0.13,
   a11y: 0.06,
@@ -294,6 +292,8 @@ const HTML_SDP_OUTPUT = `<table>
 </table>
 `;
 
+const OUTPUT_STR = `0.13 / 0.94 / 0.86 / 0.75 / (0, 0, ${OUTPUT[0].pwa.po}) => ${AVG}`;
+const PARSED_OUTPUT = `"0.13 / 0.94 / 0.86 / 0.75 / (0, 0, ${OUTPUT[0].pwa.po})" => ${AVG}`;
 const TEXT_OUTPUT = `Input => Average
 "${INPUT}" => ${AVG}
 `;
@@ -301,7 +301,7 @@ const TEXT_PERC_OUTPUT = `Input => Average
 "${INPUT}" => ${PERC}
 `;
 const TEXT_SPLIT_OUTPUT = `Perf / A11y / BP / SEO / PWA => Average
-0.13 / 0.94 / 0.86 / 0.75 / (0, 0, ${OUTPUT[0].pwa.po}) => ${AVG}
+${OUTPUT_STR}
 `;
 const TEXT_SP_OUTPUT = `Perf / A11y / BP / SEO / PWA => Average
 13% / 94% / 86% / 75% / (0%, 0%, ${PERC_OUTPUT[0].pwa.po}) => ${PERC}
@@ -314,12 +314,12 @@ const TEXT_NAMED_OUTPUT = `Name: Input => Average
 ${NAMES[0]}: "13 / 94 / 86 / 75 / (0/3, 0/3, 2/7)" => ${AVG}
 `;
 const TEXT_SD_OUTPUT = `Perf / A11y / BP / SEO / PWA => Average
-0.13 / 0.94 / 0.86 / 0.75 / (0, 0, ${OUTPUT[0].pwa.po}) => ${AVG}
+${OUTPUT_STR}
 0.13 / 0.06000000000000005 / -0.010000000000000009 / 0 / (0, 0, 0) => ${DIFF.average}
 `;
 
 const TEXT_SN_OUTPUT = `Name: Perf / A11y / BP / SEO / PWA => Average
-${NAMES[0]}: 0.13 / 0.94 / 0.86 / 0.75 / (0, 0, ${OUTPUT[0].pwa.po}) => ${AVG}
+${NAMES[0]}: ${OUTPUT_STR}
 `;
 const TEXT_SDP_OUTPUT = `Perf / A11y / BP / SEO / PWA => Average
 13% / 94% / 86% / 75% / (0%, 0%, ${PERC_OUTPUT[0].pwa.po}) => ${PERC}
@@ -384,5 +384,7 @@ module.exports = {
     splitDiff: HTML_SD_OUTPUT,
     splitNamed: HTML_SN_OUTPUT,
     splitDiffPerc: HTML_SDP_OUTPUT
-  }
+  },
+  OUTPUT_STR,
+  PARSED_OUTPUT
 };
